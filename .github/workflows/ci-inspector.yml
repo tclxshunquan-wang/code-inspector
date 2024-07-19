@@ -1,0 +1,104 @@
+name: CI-next-auth
+
+on:
+  push:
+    branches:
+      - main
+      - major
+      - minor
+      - dev
+    # Only consider those paths to trigger the action
+    paths:
+      - 'packages/**'
+      - 'package.json'
+      - '*.lock'
+      - '.yarnrc.yml'
+      - 'tsconfig.base.json'
+      - '.prettier*'
+      - '.github/**'
+
+  pull_request:
+    branches:
+      - main
+      - major
+      - minor
+      - dev
+    types:
+      - opened
+      - synchronize
+      - reopened
+    # Only consider those paths to trigger the action
+    paths:
+      - 'packages/**'
+      - 'package.json'
+      - '*.lock'
+      - '.yarnrc.yml'
+      - 'tsconfig.base.json'
+      - '.prettier*'
+      - '.github/**'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 📥 Monorepo install
+        uses: ./.github/actions/yarn-nm-install
+
+      # - name: Typecheck
+      #   working-directory: packages/next-auth
+      #   run: |
+      #     yarn typecheck
+
+      - name: Linter
+        working-directory: packages/next-auth
+        run: |
+          yarn lint
+
+      - name: Unit tests
+        working-directory: packages/next-auth
+        run: |
+          yarn test-unit --passWithNoTests
+
+      - name: Build next-auth
+        working-directory: packages/next-auth
+        run: |
+          yarn build
+  # commit:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         ref: main
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 18
+
+  #     - name: 📥 Monorepo install
+  #       uses: ./.github/actions/yarn-nm-install
+
+  #     - name: Unit test coverage
+  #       working-directory: packages/next-auth
+  #       run: |
+  #         yarn test-coverage
+
+  #     - name: Publish github pages
+  #       run: |
+  #         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+  #         git config --global user.name 'hyperse-net'
+  #         git config --global user.email 'hyperse.net@gmail.com'
+  #         git fetch
+  #         git checkout gb_pages
+  #         mkdir -p ./gb_pages
+  #         cp -R ./packages/next-auth/coverage/* ./gb_pages/coverage/next-auth
+  #         git add gb_pages/*
+  #         git commit -m "Update page"
+  #         git push

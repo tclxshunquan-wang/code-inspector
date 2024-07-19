@@ -1,0 +1,11 @@
+{
+  "dep": "prod,dev,bundle,optional,peer",
+  "reject": [
+    "@hyperse/next-demo",
+    "@hyperse/next-env",
+    "@hyperse/next-auth",
+    "@hyperse/next-core",
+    "@hyperse/next-graphql",
+    "@hyperse/next-prisma"
+  ]
+}
