@@ -1,11 +1,9 @@
 {
   "dep": "prod,dev,bundle,optional,peer",
   "reject": [
-    "@hyperse/next-demo",
-    "@hyperse/next-env",
-    "@hyperse/next-auth",
-    "@hyperse/next-core",
-    "@hyperse/next-graphql",
-    "@hyperse/next-prisma"
+    "@hyperse/code-inspector",
+    "@hyperse/code-inspector-vite",
+    "@hyperse/code-inspector-rspack",
+    "@hyperse/code-inspector-webpack"
   ]
 }

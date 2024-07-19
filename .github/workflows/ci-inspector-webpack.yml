@@ -1,4 +1,4 @@
-name: CI-next-core
+name: CI-inspector-webpack
 
 on:
   push:
@@ -54,22 +54,22 @@ jobs:
         uses: ./.github/actions/yarn-nm-install
 
       - name: Typecheck
-        working-directory: packages/next-core
+        working-directory: packages/inspector-webpack
         run: |
           yarn typecheck
 
       - name: Linter
-        working-directory: packages/next-core
+        working-directory: packages/inspector-webpack
         run: |
           yarn lint
 
       - name: Unit tests
-        working-directory: packages/next-core
+        working-directory: packages/inspector-webpack
         run: |
           yarn test-unit --passWithNoTests
 
-      - name: Build next-core
-        working-directory: packages/next-core
+      - name: Build inspector-webpack
+        working-directory: packages/inspector-webpack
         run: |
           yarn build
   # commit:
@@ -86,7 +86,7 @@ jobs:
   #       uses: ./.github/actions/yarn-nm-install
 
   #     - name: Unit test coverage
-  #       working-directory: packages/next-core
+  #       working-directory: packages/inspector-webpack
   #       run: |
   #         yarn test-coverage
 
@@ -98,7 +98,7 @@ jobs:
   #         git fetch
   #         git checkout gb_pages
   #         mkdir -p ./gb_pages
-  #         cp -R ./packages/next-core/coverage/* ./gb_pages/coverage/next-core
+  #         cp -R ./packages/inspector-webpack/coverage/* ./gb_pages/coverage/inspector-webpack
   #         git add gb_pages/*
   #         git commit -m "Update page"
   #         git push

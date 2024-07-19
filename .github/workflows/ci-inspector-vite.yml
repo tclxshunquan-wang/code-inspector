@@ -1,4 +1,4 @@
-name: CI-inspector
+name: CI-inspector-vite
 
 on:
   push:
@@ -53,23 +53,23 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
-      # - name: Typecheck
-      #   working-directory: packages/inspector
-      #   run: |
-      #     yarn typecheck
+      - name: Typecheck
+        working-directory: packages/inspector-vite
+        run: |
+          yarn typecheck
 
       - name: Linter
-        working-directory: packages/inspector
+        working-directory: packages/inspector-vite
         run: |
           yarn lint
 
       - name: Unit tests
-        working-directory: packages/inspector
+        working-directory: packages/inspector-vite
         run: |
           yarn test-unit --passWithNoTests
 
-      - name: Build inspector
-        working-directory: packages/inspector
+      - name: Build inspector-vite
+        working-directory: packages/inspector-vite
         run: |
           yarn build
   # commit:
@@ -86,7 +86,7 @@ jobs:
   #       uses: ./.github/actions/yarn-nm-install
 
   #     - name: Unit test coverage
-  #       working-directory: packages/inspector
+  #       working-directory: packages/inspector-vite
   #       run: |
   #         yarn test-coverage
 
@@ -98,7 +98,7 @@ jobs:
   #         git fetch
   #         git checkout gb_pages
   #         mkdir -p ./gb_pages
-  #         cp -R ./packages/inspector/coverage/* ./gb_pages/coverage/inspector
+  #         cp -R ./packages/inspector-vite/coverage/* ./gb_pages/coverage/inspector-vite
   #         git add gb_pages/*
   #         git commit -m "Update page"
   #         git push
