@@ -4,15 +4,16 @@ import type { Config } from '@docusaurus/types';
 import type * as Plugin from '@docusaurus/types/src/plugin';
 
 const config: Config = {
-  title: 'MUI tel input',
-  tagline: 'A phone number input designed for the React library MUI built with',
-  url: 'https://hyperse.github.io',
-  baseUrl: '/code-inspector',
+  title: 'Hyperse code inspector',
+  tagline:
+    'The code navigation, inspect in the browser, click, open source code in your local IDE.',
+  url: 'https://www.hyperse.net',
+  baseUrl: '/inspector',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: '/icon/favicon.ico',
   organizationName: 'Hyperse',
-  projectName: 'docusaurus-hyperse',
+  projectName: 'hyperse code inspector',
   presets: [
     [
       'classic',
@@ -50,7 +51,7 @@ const config: Config = {
       },
     },
     navbar: {
-      title: 'Hyperse',
+      title: '',
       hideOnScroll: false,
       logo: {
         alt: 'Hyperse',
@@ -67,12 +68,12 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          href: 'https://github.com/hyperse-io',
+          href: 'https://github.com/hyperse-io/pipeline',
           label: 'GitHub',
           position: 'right',
         },
         {
-          href: 'https://www.npmjs.com/package/@hyperse/eslint-config-hyperse',
+          href: 'https://www.npmjs.com/package/@hyperse/pipeline',
           label: 'NPM',
           position: 'right',
         },
@@ -83,9 +84,10 @@ const config: Config = {
       logo: {
         alt: 'Hyperse',
         src: '/img/logo.svg',
-        height: 40,
         style: {
+          height: 40,
           borderRadius: '2px',
+          width: 40,
         },
         href: 'https://github.com/hyperse-io',
       },
@@ -108,8 +110,7 @@ const config: Config = {
         name: 'docusaurus-tailwindcss',
         configurePostCss(postcssOptions) {
           // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(require.resolve('tailwindcss'));
-          postcssOptions.plugins.push(require.resolve('autoprefixer'));
+          postcssOptions.plugins.push(require.resolve('@tailwindcss/postcss'));
           return postcssOptions;
         },
       };

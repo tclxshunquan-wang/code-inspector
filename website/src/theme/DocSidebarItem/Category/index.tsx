@@ -2,7 +2,7 @@ import React from 'react';
 import Category from '@theme-original/DocSidebarItem/Category';
 import styles from './styles.module.css';
 
-export default function CategoryWrapper(props) {
+export default function CategoryWrapper(props: any) {
   const icon = props.item.customProps?.icon;
   const isTopLevel = props.level === 1;
   return (

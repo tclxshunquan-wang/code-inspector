@@ -20,6 +20,7 @@
     "url": "https://github.com/hyperse-net"
   },
   "type": "module",
+  "license": "SEE LICENSE IN FILE 'LICENSE'",
   "workspaces": [
     "website",
     "packages/*"
@@ -28,15 +29,15 @@
     "g:clean": "yarn clean:global-cache && yarn workspaces foreach --all -ptv run clean",
     "g:build": "yarn g:build-release",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
-    "g:build-release": "yarn workspaces foreach --all -tv run build-release",
-    "g:build-local": "yarn workspaces foreach --all -tv run build",
+    "g:build-release": "yarn workspaces foreach -At run build-release",
+    "g:build-local": "yarn workspaces foreach -At run build",
     "g:test-unit": "yarn workspaces foreach --all -ptv run test-unit",
-    "g:test-e2e": "yarn workspaces foreach --all -tv run test-e2e",
-    "g:test-coverage": "yarn workspaces foreach --all -tv run test-coverage",
-    "g:lint": "yarn workspaces foreach --all -ptv run lint",
-    "g:typecheck": "yarn workspaces foreach --all -ptv run typecheck",
+    "g:test-e2e": "yarn workspaces foreach -At run test-e2e",
+    "g:test-coverage": "yarn workspaces foreach -At run test-coverage",
+    "g:lint": "yarn workspaces foreach -At run lint",
+    "g:typecheck": "yarn workspaces foreach -At run typecheck",
     "g:lint-staged-files": "lint-staged --allow-empty",
-    "g:fix-all-files": "yarn workspaces foreach --all -ptv run fix-all-files",
+    "g:fix-all-files": "yarn workspaces foreach -At run fix-all-files",
     "g:changeset": "changeset",
     "g:version": "changeset version",
     "g:release": "yarn g:build-release && changeset publish",
@@ -49,28 +50,25 @@
       "path": "cz-conventional-changelog"
     }
   },
-  "dependencies": {
-    "cross-env": "7.0.3"
-  },
   "devDependencies": {
-    "@changesets/changelog-github": "0.5.0",
-    "@changesets/cli": "2.27.5",
-    "@commitlint/cli": "19.3.0",
-    "@commitlint/config-conventional": "19.2.2",
-    "@hyperse/eslint-config-hyperse": "^1.0.7",
-    "commitizen": "4.3.0",
-    "cz-conventional-changelog": "3.3.0",
-    "eslint": "^9.4.0",
-    "husky": "9.0.11",
-    "lint-staged": "15.2.5",
-    "npm-run-all": "4.1.5",
-    "rimraf": "5.0.7",
-    "typescript": "5.4.5"
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.4",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@hyperse/eslint-config-hyperse": "^1.4.4",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9.27.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=18.0.0",
     "npm": "please-use-yarn",
     "yarn": ">=1.22.0"
   },
-  "packageManager": "yarn@4.3.1"
+  "packageManager": "yarn@4.9.1"
 }

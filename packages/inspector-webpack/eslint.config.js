@@ -1,7 +1,7 @@
-import { base, defineConfig } from '@hyperse/eslint-config-hyperse';
+import { defineConfig, reactjs } from '@hyperse/eslint-config-hyperse';
 
 export default defineConfig([
-  ...base,
+  ...reactjs,
   {
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',

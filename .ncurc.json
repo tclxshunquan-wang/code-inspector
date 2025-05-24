@@ -1,9 +1,4 @@
 {
   "dep": "prod,dev,bundle,optional,peer",
-  "reject": [
-    "@hyperse/code-inspector",
-    "@hyperse/code-inspector-vite",
-    "@hyperse/code-inspector-rspack",
-    "@hyperse/code-inspector-webpack"
-  ]
+  "reject": []
 }
