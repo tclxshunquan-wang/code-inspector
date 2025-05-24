@@ -8,7 +8,7 @@ const config: Config = {
   tagline:
     'The code navigation, inspect in the browser, click, open source code in your local IDE.',
   url: 'https://www.hyperse.net',
-  baseUrl: '/inspector',
+  baseUrl: '/code-inspector',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: '/icon/favicon.ico',
