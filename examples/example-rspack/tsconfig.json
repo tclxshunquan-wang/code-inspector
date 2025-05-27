@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "jsx": "preserve",
+    "noImplicitAny": false,
+    "allowJs": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": false,
+    "incremental": true
+    // "paths": {
+    //   "@hyperse/inspector": ["../../packages/inspector/src/index.js"],
+    //   "@hyperse/inspector-babel-plugin": [
+    //     "../../packages/inspector-babel-plugin/src/index.js"
+    //   ]
+    // }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "rspack.config.mjs"],
+  "exclude": ["**/node_modules", "**/.*/", "dist", "build"]
+}

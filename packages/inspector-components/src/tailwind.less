@@ -1,0 +1,281 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* https://tailwindcss.com/docs/customizing-colors#using-css-variables */
+/* https://www.solid-ui.com/docs/installation/manual */
+
+@layer base {
+  :root,
+  :host {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --info: 204 90% 94%;
+    --info-foreground: 199 89% 48%;
+
+    --success: 149 80% 90%;
+    --success-foreground: 160 84% 39%;
+
+    --warning: 48 96% 89%;
+    --warning-foreground: 25 95% 53%;
+
+    --error: 0 93% 94%;
+    --error-foreground: 0 84% 60%;
+
+    --ring: 240 5.9% 10%;
+
+    --radius: 0.5rem;
+
+    --color-text-0: #1f2329;
+    --color-text-1: #35383e;
+    --color-text-2: #626569;
+    --color-text-3: #bbbfc4;
+    --color-bg-0: #fff;
+    --color-bg-1: #fff;
+    --color-bg-2: #fff;
+    --color-bg-3: #fff;
+
+    --color-bg-hover-0: rgb(209 213 219);
+    --color-bg-hover-1: rgb(229 231 235);
+    --color-bg-hover-2: rgb(243 244 246);
+    --color-bg-hover-3: rgb(254 254 254);
+    --color-bg-active-0: rgb(209 213 219);
+    --color-bg-active-1: rgb(229 231 235);
+    --color-bg-active-2: rgb(239 239 240);
+    --color-bg-active-3: rgb(254 254 254);
+    --color-shadow-1: rgba(0,0,0,0.02);
+    --color-shadow-2: rgba(0,0,0,0.03);
+    --color-shadow-3: rgba(0,0,0,0.04);
+    --color-shadow-4: rgba(0,0,0,0.05);
+    --color-shadow-5: rgba(0,0,0,0.06);
+    --shadow-S1-down: 0px 2px 8px 2px var(--color-shadow-1), 0px 2px 4px 0px var(--color-shadow-1), 0px 1px 2px -2px var(--color-shadow-1);
+    --shadow-S2-down: 0px 2px 4px -4px var(--color-shadow-1), 0px 4px 8px 0px var(--color-shadow-1), 0px 4px 16px 4px var(--color-shadow-2);
+    --shadow-S3-down: 0px 6px 18px 6px var(--color-shadow-2), 0px 3px 6px -6px var(--color-shadow-4), 0px 4px 8px 0px var(--color-shadow-2);
+    --shadow-S4-down: 0px 8px 24px 8px var(--color-shadow-3), 0px 6px 12px 0px var(--color-shadow-3), 0px 4px 8px -8px var(--color-shadow-5);
+    --shadow-S5-down: 0px 10px 36px 10px var(--color-shadow-4), 0px 8px 24px 0px var(--color-shadow-4), 0px 6px 12px -10px var(--color-shadow-5);
+
+    --color-scrollbar: #646a7344;
+    --color-scrollbar-hover: #646a7366;
+
+    --color-tag-red-0: hsl(2 90% 64% / 0.08);
+    --color-tag-red-1: hsl(2 90% 64% / 0.12);
+    --color-tag-red-2: hsl(2 90% 64% / 0.3);
+    --color-tag-pink-0: hsl(329 82% 64% / 0.08);
+    --color-tag-pink-1: hsl(329 82% 64% / 0.12);
+    --color-tag-pink-2: hsl(329 82% 64% / 0.3);
+    --color-tag-orange-0: hsl(29 100% 49% / 0.08);
+    --color-tag-orange-1: hsl(29 100% 49% / 0.12);
+    --color-tag-orange-2: hsl(29 100% 49% / 0.3);
+    --color-tag-amber-0: hsl(45 100% 43% / 0.08);
+    --color-tag-amber-1: hsl(45 100% 43% / 0.12);
+    --color-tag-amber-2: hsl(45 100% 43% / 0.3);
+    --color-tag-yellow-0: hsl(54 100% 48% / 0.08);
+    --color-tag-yellow-1: hsl(54 100% 48% / 0.12);
+    --color-tag-yellow-2: hsl(54 100% 48% / 0.3);
+    --color-tag-lime-0: hsl(71 100% 38% / 0.08);
+    --color-tag-lime-1: hsl(71 100% 38% / 0.12);
+    --color-tag-lime-2: hsl(71 100% 38% / 0.3);
+    --color-tag-green-0: hsl(115 85% 35% / 0.08);
+    --color-tag-green-1: hsl(115 85% 35% / 0.12);
+    --color-tag-green-2: hsl(115 85% 35% / 0.3);
+    --color-tag-cyan-0: hsl(174 99% 32% / 0.08);
+    --color-tag-cyan-1: hsl(174 99% 32% / 0.12);
+    --color-tag-cyan-2: hsl(174 99% 32% / 0.3);
+    --color-tag-lightblue-0: hsl(195 97% 42% / 0.08);
+    --color-tag-lightblue-1: hsl(195 97% 42% / 0.12);
+    --color-tag-lightblue-2: hsl(195 97% 42% / 0.3);
+    --color-tag-blue-0: hsl(220 100% 67% / 0.08);
+    --color-tag-blue-1: hsl(220 100% 67% / 0.12);
+    --color-tag-blue-2: hsl(220 100% 67% / 0.3);
+    --color-tag-indigo-0: hsl(235 71% 64% / 0.08);
+    --color-tag-indigo-1: hsl(235 71% 64% / 0.12);
+    --color-tag-indigo-2: hsl(235 71% 64% / 0.3);
+    --color-tag-violet-0: hsl(263 97% 72% / 0.08);
+    --color-tag-violet-1: hsl(263 97% 72% / 0.12);
+    --color-tag-violet-2: hsl(263 97% 72% / 0.3);
+    --color-tag-purple-0: hsl(300 63% 64% / 0.08);
+    --color-tag-purple-1: hsl(300 63% 64% / 0.12);
+    --color-tag-purple-2: hsl(300 63% 64% / 0.3);
+    --color-tag-gray-0: hsl(212 7% 42% / 0.08);
+    --color-tag-gray-1: hsl(212 7% 42% / 0.10);
+    --color-tag-gray-2: hsl(212 7% 42% / 0.3);
+  }
+
+
+  .dark, :host(.dark),
+  .dark-theme, :host(.dark-theme),
+  [theme-mode="dark"], :host([theme-mode="dark"]),
+  [data-theme="dark"], :host([data-theme="dark"]),
+  [data-kb-theme="dark"] {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 30%;
+    --input: 240 3.7% 15.9%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --info: 204 80% 25%;
+    --info-foreground: 199 89% 48%;
+
+    --success: 149 80% 90%;
+    --success-foreground: 160 84% 39%;
+
+    --warning: 48 96% 89%;
+    --warning-foreground: 25 95% 53%;
+
+    --error: 0 93% 94%;
+    --error-foreground: 0 84% 60%;
+
+    --ring: 240 4.9% 83.9%;
+
+    --radius: 0.5rem;
+    --color-text-0: #f9f9f9;
+    --color-text-1: #f9f9f9cc;
+    --color-text-2: #f9f9f999;
+    --color-text-3: #f9f9f966;
+    --color-bg-0: #232429;
+    --color-bg-1: #2f3037;
+    --color-bg-2: #3a3c47;
+    --color-bg-3: #464852;
+    --color-bg-hover-0: rgb(161 161 170);
+    --color-bg-hover-1: rgb(113 113 122);
+    --color-bg-hover-2: rgb(82 82 91);
+    --color-bg-hover-3: rgb(63 63 70);
+    --color-bg-active-0: rgb(161 161 170);
+    --color-bg-active-1: rgb(113 113 122);
+    --color-bg-active-2: rgb(82 82 91);
+    --color-bg-active-3: rgb(63 63 70);
+
+    --color-scrollbar: #888d9233;
+    --color-scrollbar-hover: #888d9266;
+
+    --color-tag-red-0: hsl(6 96% 59% / 0.1);
+    --color-tag-red-1: hsl(6 96% 59% / 0.3);
+    --color-tag-red-2: hsl(6 96% 59% / 0.6);
+    --color-tag-pink-0: hsl(341 82% 64% / 0.1);
+    --color-tag-pink-1: hsl(341 82% 64% / 0.3);
+    --color-tag-pink-2: hsl(341 82% 64% / 0.6);
+    --color-tag-orange-0: hsl(29 100% 54% / 0.1);
+    --color-tag-orange-1: hsl(29 100% 54% / 0.3);
+    --color-tag-orange-2: hsl(29 100% 54% / 0.6);
+    --color-tag-amber-0: hsl(42 87% 55% / 0.1);
+    --color-tag-amber-1: hsl(42 87% 55% / 0.3);
+    --color-tag-amber-2: hsl(42 87% 55% / 0.6);
+    --color-tag-yellow-0: hsl(48 98% 54% / 0.1);
+    --color-tag-yellow-1: hsl(48 98% 54% / 0.3);
+    --color-tag-yellow-2: hsl(48 98% 54% / 0.6);
+    --color-tag-lime-0: hsl(78 73% 55% / 0.1);
+    --color-tag-lime-1: hsl(78 73% 55% / 0.3);
+    --color-tag-lime-2: hsl(78 73% 55% / 0.6);
+    --color-tag-green-0: hsl(123 45% 56% / 0.1);
+    --color-tag-green-1: hsl(123 45% 56% / 0.3);
+    --color-tag-green-2: hsl(123 45% 56% / 0.6);
+    --color-tag-cyan-0: hsl(184 68% 50% / 0.1);
+    --color-tag-cyan-1: hsl(184 68% 50% / 0.3);
+    --color-tag-cyan-2: hsl(184 68% 50% / 0.6);
+    --color-tag-lightblue-0: hsl(202 88% 60% / 0.1);
+    --color-tag-lightblue-1: hsl(202 88% 60% / 0.3);
+    --color-tag-lightblue-2: hsl(202 88% 60% / 0.6);
+    --color-tag-blue-0: hsl(219 80% 56% / 0.1);
+    --color-tag-blue-1: hsl(219 80% 56% / 0.3);
+    --color-tag-blue-2: hsl(219 80% 56% / 0.6);
+    --color-tag-indigo-0: hsl(231 50% 57% / 0.1);
+    --color-tag-indigo-1: hsl(231 50% 57% / 0.3);
+    --color-tag-indigo-2: hsl(231 50% 57% / 0.6);
+    --color-tag-violet-0: hsl(256 59% 61% / 0.1);
+    --color-tag-violet-1: hsl(256 59% 61% / 0.3);
+    --color-tag-violet-2: hsl(256 59% 61% / 0.6);
+    --color-tag-purple-0: hsl(292 48% 54% / 0.2);
+    --color-tag-purple-1: hsl(292 48% 54% / 0.3);
+    --color-tag-purple-2: hsl(292 48% 54% / 0.6);
+    --color-tag-gray-0: hsl(210 4% 55% / 0.1);
+    --color-tag-gray-1: hsl(210 4% 55% / 0.3);
+    --color-tag-gray-2: hsl(210 4% 55% / 0.6);
+  }
+
+
+  @media (prefers-color-scheme: dark) {
+    :root,
+    :host {
+      .dark-theme();
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body,
+  :host {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+
+    scrollbar-color: var(--color-scrollbar) transparent;
+  }
+
+  :focus-visible {
+    outline: none;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-scrollbar-hover);
+  }
+}
+
+@layer utilities {
+  /* Chrome, Safari, Edge */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    /* Firefox */
+    scrollbar-width: none;
+  }
+}

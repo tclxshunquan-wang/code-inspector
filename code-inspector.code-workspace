@@ -5,8 +5,12 @@
       "path": "website",
     },
     {
-      "name": "inspector",
-      "path": "packages/inspector",
+      "name": "example-rspack",
+      "path": "examples/example-rspack",
+    },
+    {
+      "name": "inspector-babel-plugin",
+      "path": "packages/inspector-babel-plugin",
     },
     {
       "name": "inspector-vite",
@@ -19,6 +23,18 @@
     {
       "name": "inspector-webpack",
       "path": "packages/inspector-webpack",
+    },
+    {
+      "name": "inspector-components",
+      "path": "packages/inspector-components",
+    },
+    {
+      "name": "inspector-launch-editor",
+      "path": "packages/inspector-launch-editor",
+    },
+    {
+      "name": "inspector",
+      "path": "packages/inspector",
     },
     {
       "name": "root",
@@ -74,10 +90,14 @@
     // https://github.com/Microsoft/vscode-eslint#mono-repository-setup
     "eslint.workingDirectories": [
       "./website",
-      "./packages/inspector",
+      "./examples/example-rspack",
+      "./packages/inspector-babel-plugin",
       "./packages/inspector-vite",
       "./packages/inspector-rspack",
-      "./packages/inspector-webpack"
+      "./packages/inspector-webpack",
+      "./packages/inspector-components",
+      "./packages/inspector-launch-editor",
+      "./packages/inspector"
     ],
     "typescript.tsdk": "root/node_modules/typescript/lib"
   },

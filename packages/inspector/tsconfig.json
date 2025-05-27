@@ -2,12 +2,16 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmit": false,
     "incremental": true,
-    "paths": {},
+    "paths": {
+      "@hyperse/inspector-launch-editor": [
+        "../inspector-launch-editor/src/index.js"
+      ]
+    },
     "types": ["vitest/globals"]
   },
   "include": ["**/*.ts", "**/*.tsx"],

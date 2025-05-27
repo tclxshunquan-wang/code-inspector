@@ -23,7 +23,8 @@
   "license": "SEE LICENSE IN FILE 'LICENSE'",
   "workspaces": [
     "website",
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
     "g:clean": "yarn clean:global-cache && yarn workspaces foreach --all -ptv run clean",
