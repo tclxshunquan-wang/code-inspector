@@ -16,7 +16,9 @@ const config = {
       return middlewares;
     },
   },
-
+  experiments: {
+    css: true,
+  },
   entry: {
     main: './src/main.tsx',
   },
@@ -38,6 +40,15 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        type: 'asset',
+      },
+      {
+        test: /\.css$/,
+        use: ['postcss-loader'],
+        type: 'css',
+      },
+      {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
@@ -56,28 +67,6 @@ const config = {
             plugins: ['../../packages/inspector-babel-plugin/dist/index.js'],
           },
         },
-      },
-      {
-        test: /\.svg$/,
-        type: 'asset',
-      },
-      {
-        test: /\.css$/,
-        type: 'css',
-        use: [
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: {
-                  'tailwindcss/nesting': {},
-                  tailwindcss: {},
-                  autoprefixer: {},
-                },
-              },
-            },
-          },
-        ],
       },
       // {
       //   test: /\.tsx?$/,

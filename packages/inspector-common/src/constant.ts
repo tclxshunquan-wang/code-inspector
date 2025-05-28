@@ -9,4 +9,4 @@ export const launchEditorEndpoint = '/__inspect-open-in-editor';
 /**
  * The attribute name used to inject source location information into JSX elements
  */
-export const TRACE_ID = '__inspectorSource';
+export const TRACE_ID = '__inspectorsource';

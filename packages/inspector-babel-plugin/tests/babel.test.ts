@@ -1,3 +1,4 @@
+import { TRACE_ID } from '@hyperse/inspector-common';
 import inspectorBabelPlugin from '../src/index.js';
 import { babelCompile, getDirname } from './utils/index.js';
 
@@ -18,7 +19,7 @@ describe(`tests preset babel react, inject inspector source`, () => {
     })?.code;
 
     const targetCode = `
-       __inspectorSource: {
+      ${TRACE_ID}: {
       fileName: _jsxFileName2,
       lineNumber: 5,
       columnNumber: 11

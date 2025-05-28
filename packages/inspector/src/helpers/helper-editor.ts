@@ -43,7 +43,7 @@ export const gotoServerEditor = (
     editor: options?.editor,
   };
 
-  const prams = new URLSearchParams(
+  const params = new URLSearchParams(
     Object.entries(launchParams).filter(([, value]) => Boolean(value)) as [
       string,
       string,
@@ -55,7 +55,7 @@ export const gotoServerEditor = (
      * api path in {@link {import('@hyperse/inspector').createLaunchEditorMiddleware}}
      */
     url: launchEditorEndpoint,
-    prams,
+    params,
     fallbackUrl: isRelative
       ? `${launchEditorEndpoint}/relative`
       : launchEditorEndpoint,

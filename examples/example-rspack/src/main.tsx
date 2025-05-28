@@ -1,9 +1,12 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ShowPage } from './ShowPage';
+import { HeroUIProvider } from '@heroui/react';
+import { AppPage } from './App';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
-  <React.StrictMode>
-    <ShowPage />
-  </React.StrictMode>
+  <StrictMode>
+    <HeroUIProvider>
+      <AppPage />
+    </HeroUIProvider>
+  </StrictMode>
 );

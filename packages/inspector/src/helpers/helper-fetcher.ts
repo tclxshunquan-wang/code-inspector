@@ -1,16 +1,16 @@
 export const fetcher = async ({
   url,
-  prams,
+  params,
   fallbackUrl,
 }: {
   url: string;
-  prams: URLSearchParams;
+  params: URLSearchParams;
   fallbackUrl?: string;
 }) => {
-  const response = await fetch(`${url}?${prams}`);
+  const response = await fetch(`${url}?${params}`);
   // only 404 need to try fallback legacy endpoint
   if (response.status === 404 && fallbackUrl) {
-    return await fetch(`${fallbackUrl}?${prams}`);
+    return await fetch(`${fallbackUrl}?${params}`);
   }
   return response;
 };
