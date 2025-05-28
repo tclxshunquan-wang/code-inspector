@@ -27,7 +27,7 @@
     "examples/*"
   ],
   "scripts": {
-    "g:clean": "yarn clean:global-cache && yarn workspaces foreach --all -ptv run clean",
+    "g:clean": "yarn workspaces foreach --all -ptv run clean",
     "g:build": "yarn g:build-release",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "g:build-release": "yarn workspaces foreach -At run build-release",

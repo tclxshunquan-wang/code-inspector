@@ -1,4 +1,4 @@
-import { createLaunchEditorMiddleware } from '@hyperse/inspector-launch-editor';
+import { createLaunchEditorMiddleware } from '@hyperse/inspector-middleware';
 import { DefinePlugin, HtmlRspackPlugin, ProgressPlugin } from '@rspack/core';
 import ReactRefreshPlugin from '@rspack/plugin-react-refresh';
 
@@ -10,7 +10,7 @@ const config = {
   devServer: {
     setupMiddlewares(middlewares) {
       /**
-       * react-dev-inspector server config for rspack
+       * @hyperse/inspector server config for rspack
        */
       middlewares.unshift(createLaunchEditorMiddleware({}));
       return middlewares;

@@ -113,7 +113,7 @@ export interface InspectorProps<
    *   it looks like:
    *
    * ```tsx
-   * import { Inspector, gotoServerEditor } from 'react-dev-inspector'
+   * import { Inspector, gotoServerEditor } from '@hyperse/inspector'
    *
    * <Inspector
    *   onInspectElement={({ codeInfo }) => {

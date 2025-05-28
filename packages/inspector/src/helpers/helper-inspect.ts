@@ -65,7 +65,7 @@ export const getCodeInfoFromDebugSource = (
 };
 
 /**
- * code location data-attribute props inject by `@react-dev-inspector/babel-plugin`
+ * code location data-attribute props inject by `@hyperse/inspector-babel-plugin`
  */
 export const getCodeInfoFromProps = (fiber?: Fiber): CodeInfo | undefined => {
   if (!fiber?.pendingProps?.[TRACE_ID]) return undefined;

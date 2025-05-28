@@ -3332,7 +3332,7 @@ __metadata:
     "@hyperse/inspector": "workspace:*"
     "@hyperse/inspector-babel-plugin": "workspace:*"
     "@hyperse/inspector-common": "workspace:*"
-    "@hyperse/inspector-launch-editor": "workspace:*"
+    "@hyperse/inspector-middleware": "workspace:*"
     "@rspack/cli": "npm:1.3.12"
     "@rspack/core": "npm:1.3.12"
     "@rspack/plugin-react-refresh": "npm:1.4.3"
@@ -3533,9 +3533,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@hyperse/inspector-launch-editor@workspace:*, @hyperse/inspector-launch-editor@workspace:packages/inspector-launch-editor":
+"@hyperse/inspector-middleware@workspace:*, @hyperse/inspector-middleware@workspace:packages/inspector-middleware":
   version: 0.0.0-use.local
-  resolution: "@hyperse/inspector-launch-editor@workspace:packages/inspector-launch-editor"
+  resolution: "@hyperse/inspector-middleware@workspace:packages/inspector-middleware"
   dependencies:
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
     "@hyperse/inspector-common": "workspace:*"
@@ -3547,48 +3547,18 @@ __metadata:
     launch-editor: "npm:^2.10.0"
     next: "npm:^15.3.2"
     npm-run-all: "npm:4.1.5"
-    react: "npm:^19.1.0"
-    react-dom: "npm:^19.1.0"
-    rimraf: "npm:6.0.1"
-    typescript: "npm:5.8.3"
-    vitest: "npm:3.1.4"
-  peerDependencies:
-    react: "*"
-  peerDependenciesMeta:
-    react:
-      optional: true
-  languageName: unknown
-  linkType: soft
-
-"@hyperse/inspector-rspack@workspace:packages/inspector-rspack":
-  version: 0.0.0-use.local
-  resolution: "@hyperse/inspector-rspack@workspace:packages/inspector-rspack"
-  dependencies:
-    "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
-    "@types/node": "npm:22.15.21"
-    "@vitest/coverage-istanbul": "npm:3.1.4"
-    "@vitest/ui": "npm:3.1.4"
-    eslint: "npm:^9.27.0"
-    next: "npm:^15.3.2"
-    npm-run-all: "npm:4.1.5"
-    react: "npm:^19.1.0"
-    react-dom: "npm:^19.1.0"
     rimraf: "npm:6.0.1"
     typescript: "npm:5.8.3"
     vitest: "npm:3.1.4"
   languageName: unknown
   linkType: soft
 
-"@hyperse/inspector-webpack@workspace:packages/inspector-webpack":
+"@hyperse/inspector-swc-plugin@workspace:packages/inspector-swc-plugin":
   version: 0.0.0-use.local
-  resolution: "@hyperse/inspector-webpack@workspace:packages/inspector-webpack"
+  resolution: "@hyperse/inspector-swc-plugin@workspace:packages/inspector-swc-plugin"
   dependencies:
-    "@babel/core": "npm:^7.27.3"
-    "@babel/preset-react": "npm:^7.27.1"
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
-    "@types/babel__core": "npm:^7.20.5"
     "@types/node": "npm:22.15.21"
-    "@types/react": "npm:^19.1.6"
     "@vitest/coverage-istanbul": "npm:3.1.4"
     "@vitest/ui": "npm:3.1.4"
     eslint: "npm:^9.27.0"
@@ -3609,15 +3579,12 @@ __metadata:
     "@hyperse-internal/tinykeys": "npm:^1.0.3"
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
     "@hyperse/inspector-common": "workspace:*"
-    "@hyperse/inspector-launch-editor": "workspace:*"
     "@react-dev-inspector/web-components": "npm:2.1.0-beta.7"
     "@types/node": "npm:22.15.21"
     "@types/react-reconciler": "npm:^0.32.0"
     "@vitest/coverage-istanbul": "npm:3.1.4"
     "@vitest/ui": "npm:3.1.4"
     eslint: "npm:^9.27.0"
-    express: "npm:^5.1.0"
-    launch-editor: "npm:^2.10.0"
     next: "npm:^15.3.2"
     npm-run-all: "npm:4.1.5"
     react: "npm:^19.1.0"
@@ -3626,7 +3593,8 @@ __metadata:
     typescript: "npm:5.8.3"
     vitest: "npm:3.1.4"
   peerDependencies:
-    react: "*"
+    "@hyperse/inspector-middleware": "workspace:*"
+    react: ">=18.2.0"
   peerDependenciesMeta:
     react:
       optional: true

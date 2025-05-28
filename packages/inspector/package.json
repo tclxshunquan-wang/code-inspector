@@ -58,14 +58,12 @@
   "dependencies": {
     "@hyperse-internal/tinykeys": "^1.0.3",
     "@hyperse/inspector-common": "workspace:*",
-    "@hyperse/inspector-launch-editor": "workspace:*",
     "@react-dev-inspector/web-components": "2.1.0-beta.7",
-    "@types/react-reconciler": "^0.32.0",
-    "express": "^5.1.0",
-    "launch-editor": "^2.10.0"
+    "@types/react-reconciler": "^0.32.0"
   },
   "peerDependencies": {
-    "react": "*"
+    "@hyperse/inspector-middleware": "workspace:*",
+    "react": ">=18.2.0"
   },
   "peerDependenciesMeta": {
     "react": {

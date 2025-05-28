@@ -21,8 +21,8 @@
       "path": "packages/inspector-swc-plugin",
     },
     {
-      "name": "inspector-launch-editor",
-      "path": "packages/inspector-launch-editor",
+      "name": "inspector-middleware",
+      "path": "packages/inspector-middleware",
     },
     {
       "name": "inspector",
@@ -86,7 +86,7 @@
       "./packages/inspector-common",
       "./packages/inspector-babel-plugin",
       "./packages/inspector-swc-plugin",
-      "./packages/inspector-launch-editor",
+      "./packages/inspector-middleware",
       "./packages/inspector"
     ],
     "typescript.tsdk": "root/node_modules/typescript/lib"

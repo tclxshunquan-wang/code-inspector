@@ -26,6 +26,7 @@ export const useControlledActive = ({
 } => {
   const [isActive, setActive] = useState<boolean>(controlledActive ?? false);
   const activeRef = useRef<boolean>(isActive);
+  const unbindRef = useRef<() => void>(() => {});
 
   // sync state as controlled component
   useLayoutEffect(() => {
@@ -59,21 +60,19 @@ export const useControlledActive = ({
 
   const handleActivate = useEffectEvent(() => {
     onActivate?.();
-
-    keybindings(window, {
+    unbindRef.current = keybindings(window, {
       esc: handelEscapeToCancel,
     });
   });
 
   const handleDeactivate = useEffectEvent(() => {
-    // hotkeys.unbind('esc', handelEscapeToCancel);
-
+    unbindRef.current?.();
     onDeactivate?.();
   });
 
   useEffect(() => {
     return () => {
-      // hotkeys.unbind('esc', handelEscapeToCancel);
+      unbindRef.current?.();
     };
   }, []);
 

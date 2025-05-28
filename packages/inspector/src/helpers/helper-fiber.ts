@@ -134,7 +134,7 @@ export function* genFiberRenderChain(
 }
 
 /**
- * debugOwner first of a fiber, typical use for {@link InspectAgent.getSourceChain}
+ * debugOwner first of a fiber, typical use for
  */
 export function* genFiberSourceChain(
   fiber?: Fiber | null

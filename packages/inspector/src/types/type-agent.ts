@@ -2,6 +2,8 @@ import type { Fiber } from 'react-reconciler';
 import type { TagItem } from '@react-dev-inspector/web-components';
 import type { CodeInfo } from './type-code.js';
 
+type MaybePromise<T> = T | Promise<T>;
+
 /**
  * Pointer(mouse/touch) position
  * use in {@link InspectAgent.getTopElementFromPointer}
@@ -259,5 +261,3 @@ export interface InspectChainItem<Element> {
   /** for open in editor */
   codeInfo?: CodeInfo;
 }
-
-type MaybePromise<T> = T | Promise<T>;

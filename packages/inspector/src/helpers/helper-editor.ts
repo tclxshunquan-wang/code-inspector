@@ -30,7 +30,7 @@ export const gotoServerEditor = (
 
   if (!fileName) {
     console.error(
-      `[react-dev-inspector] Cannot open editor without source fileName`,
+      `[@hyperse/inspector] Cannot open editor without source fileName`,
       codeInfo
     );
     return;
@@ -75,7 +75,7 @@ export const gotoVSCode = (
 
   if (!codeInfo.absolutePath) {
     console.error(
-      `[react-dev-inspector] Cannot open editor without source fileName`,
+      `[@hyperse/inspector] Cannot open editor without source fileName`,
       codeInfo
     );
     return;
@@ -87,9 +87,30 @@ export const gotoVSCode = (
 
 /**
  * open source file in VSCode via it's url schema
+ *
+ * https://code.visualstudio.com/insiders/
  */
 export const gotoVSCodeInsiders = (codeInfo: CodeInfoLike) => {
   return gotoVSCode(codeInfo, { insiders: true });
+};
+
+/**
+ * open source file in Cursor via it's url schema
+ */
+export const gotoCursor = (_codeInfo: CodeInfoLike) => {
+  const codeInfo = getCodeInfo(_codeInfo);
+
+  if (!codeInfo.absolutePath) {
+    console.error(
+      `[@hyperse/inspector] Cannot open editor without source fileName`,
+      codeInfo
+    );
+    return;
+  }
+  const { absolutePath, lineNumber, columnNumber } = codeInfo;
+  window.open(
+    `cursor://open?file=${absolutePath}&line=${lineNumber}&column=${columnNumber}`
+  );
 };
 
 /**
@@ -100,7 +121,7 @@ export const gotoWebStorm = (_codeInfo: CodeInfoLike) => {
 
   if (!codeInfo.absolutePath) {
     console.error(
-      `[react-dev-inspector] Cannot open editor without source fileName`,
+      `[@hyperse/inspector] Cannot open editor without source fileName`,
       codeInfo
     );
     return;

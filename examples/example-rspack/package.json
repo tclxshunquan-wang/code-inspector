@@ -22,7 +22,7 @@
     "@hyperse/inspector": "workspace:*",
     "@hyperse/inspector-babel-plugin": "workspace:*",
     "@hyperse/inspector-common": "workspace:*",
-    "@hyperse/inspector-launch-editor": "workspace:*",
+    "@hyperse/inspector-middleware": "workspace:*",
     "clsx": "2.1.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",

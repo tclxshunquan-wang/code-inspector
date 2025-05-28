@@ -6,7 +6,6 @@ export const ShowPage = () => {
 
   return (
     <>
-      12312312
       <Inspector
         keys={['Shift', 'c']}
         active={active}
@@ -15,6 +14,7 @@ export const ShowPage = () => {
           console.log(e);
         }}
       />
+      <div>12312312</div>
       <button>测试</button>
     </>
   );

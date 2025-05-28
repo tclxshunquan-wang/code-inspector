@@ -51,12 +51,12 @@ export const useHotkeyToggle = ({
       hotkey === null || disable ? null : hotkey || defaultHotkeys().join('+');
 
     if (bindKey) {
-      keybindings(window, {
+      const unbind = keybindings(window, {
         [bindKey]: handleHotKeys,
       });
 
       return () => {
-        // hotkeys.unbind(bindKey, handleHotKeys);
+        unbind();
       };
     }
     return;
