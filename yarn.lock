@@ -3331,6 +3331,8 @@ __metadata:
     "@babel/preset-typescript": "npm:7.27.1"
     "@hyperse/inspector": "workspace:*"
     "@hyperse/inspector-babel-plugin": "workspace:*"
+    "@hyperse/inspector-common": "workspace:*"
+    "@hyperse/inspector-launch-editor": "workspace:*"
     "@rspack/cli": "npm:1.3.12"
     "@rspack/core": "npm:1.3.12"
     "@rspack/plugin-react-refresh": "npm:1.4.3"
@@ -3494,6 +3496,7 @@ __metadata:
     "@babel/helper-plugin-utils": "npm:^7.27.1"
     "@babel/preset-react": "npm:^7.27.1"
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
+    "@hyperse/inspector-common": "workspace:*"
     "@types/babel__core": "npm:^7.20.5"
     "@types/babel__helper-plugin-utils": "npm:^7"
     "@types/node": "npm:22.15.21"
@@ -3511,27 +3514,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@hyperse/inspector-components@workspace:packages/inspector-components":
+"@hyperse/inspector-common@workspace:*, @hyperse/inspector-common@workspace:packages/inspector-common":
   version: 0.0.0-use.local
-  resolution: "@hyperse/inspector-components@workspace:packages/inspector-components"
+  resolution: "@hyperse/inspector-common@workspace:packages/inspector-common"
   dependencies:
-    "@floating-ui/core": "npm:^1.7.0"
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
-    "@kobalte/core": "npm:^0.13.9"
     "@types/node": "npm:22.15.21"
     "@vitest/coverage-istanbul": "npm:3.1.4"
     "@vitest/ui": "npm:3.1.4"
     eslint: "npm:^9.27.0"
-    lucide-solid: "npm:^0.511.0"
     next: "npm:^15.3.2"
     npm-run-all: "npm:4.1.5"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
     rimraf: "npm:6.0.1"
-    rxjs: "npm:^8.0.0-alpha.14"
-    solid-element: "npm:^1.9.1"
-    solid-js: "npm:^1.9.7"
-    tailwind-merge: "npm:^3.3.0"
     typescript: "npm:5.8.3"
     vitest: "npm:3.1.4"
   languageName: unknown
@@ -3542,6 +3538,7 @@ __metadata:
   resolution: "@hyperse/inspector-launch-editor@workspace:packages/inspector-launch-editor"
   dependencies:
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
+    "@hyperse/inspector-common": "workspace:*"
     "@types/node": "npm:22.15.21"
     "@vitest/coverage-istanbul": "npm:3.1.4"
     "@vitest/ui": "npm:3.1.4"
@@ -3566,25 +3563,6 @@ __metadata:
 "@hyperse/inspector-rspack@workspace:packages/inspector-rspack":
   version: 0.0.0-use.local
   resolution: "@hyperse/inspector-rspack@workspace:packages/inspector-rspack"
-  dependencies:
-    "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
-    "@types/node": "npm:22.15.21"
-    "@vitest/coverage-istanbul": "npm:3.1.4"
-    "@vitest/ui": "npm:3.1.4"
-    eslint: "npm:^9.27.0"
-    next: "npm:^15.3.2"
-    npm-run-all: "npm:4.1.5"
-    react: "npm:^19.1.0"
-    react-dom: "npm:^19.1.0"
-    rimraf: "npm:6.0.1"
-    typescript: "npm:5.8.3"
-    vitest: "npm:3.1.4"
-  languageName: unknown
-  linkType: soft
-
-"@hyperse/inspector-vite@workspace:packages/inspector-vite":
-  version: 0.0.0-use.local
-  resolution: "@hyperse/inspector-vite@workspace:packages/inspector-vite"
   dependencies:
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
     "@types/node": "npm:22.15.21"
@@ -3630,6 +3608,7 @@ __metadata:
   dependencies:
     "@hyperse-internal/tinykeys": "npm:^1.0.3"
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
+    "@hyperse/inspector-common": "workspace:*"
     "@hyperse/inspector-launch-editor": "workspace:*"
     "@react-dev-inspector/web-components": "npm:2.1.0-beta.7"
     "@types/node": "npm:22.15.21"
@@ -4008,7 +3987,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@kobalte/core@npm:^0.13.2, @kobalte/core@npm:^0.13.9":
+"@kobalte/core@npm:^0.13.2":
   version: 0.13.9
   resolution: "@kobalte/core@npm:0.13.9"
   dependencies:
@@ -12975,15 +12954,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-solid@npm:^0.511.0":
-  version: 0.511.0
-  resolution: "lucide-solid@npm:0.511.0"
-  peerDependencies:
-    solid-js: ^1.4.7
-  checksum: 10c0/71741cc313f25c8e4bd9aff301b15890d97fbb1c2c275218b3bb6183859a108407112206404e269b2e32083d97166ec93b1d62230353c05f2670459746bb3e85
-  languageName: node
-  linkType: hard
-
 "magic-string@npm:^0.30.17":
   version: 0.30.17
   resolution: "magic-string@npm:0.30.17"
@@ -18014,7 +17984,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"solid-element@npm:^1.8.1, solid-element@npm:^1.9.1":
+"solid-element@npm:^1.8.1":
   version: 1.9.1
   resolution: "solid-element@npm:1.9.1"
   dependencies:
@@ -18025,7 +17995,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"solid-js@npm:^1.8.18, solid-js@npm:^1.9.7":
+"solid-js@npm:^1.8.18":
   version: 1.9.7
   resolution: "solid-js@npm:1.9.7"
   dependencies:
@@ -18608,13 +18578,6 @@ __metadata:
   version: 2.6.0
   resolution: "tailwind-merge@npm:2.6.0"
   checksum: 10c0/fc8a5535524de9f4dacf1c16ab298581c7bb757d68a95faaf28942b1c555a619bba9d4c6726fe83986e44973b315410c1a5226e5354c30ba82353bd6d2288fa5
-  languageName: node
-  linkType: hard
-
-"tailwind-merge@npm:^3.3.0":
-  version: 3.3.0
-  resolution: "tailwind-merge@npm:3.3.0"
-  checksum: 10c0/a50cd141100486f98541dfab3705712af5860556689b7496dc6b0284374f02d12d5471f0f40035f6bb8b1c749c422060a1f3e5f8900057d8a7786b111c8472e6
   languageName: node
   linkType: hard
 

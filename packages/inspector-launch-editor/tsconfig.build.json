@@ -4,19 +4,9 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "incremental": false,
-    "moduleResolution": "bundler",
-    "target": "ES2020",
-    "module": "ESNext",
-    "noEmit": false,
-    "sourceMap": false,
-    "declarationMap": false
+    "moduleResolution": "nodenext",
+    "paths": {}
   },
   "include": ["./src/index.ts"],
-  "exclude": [
-    "**/*.stories.tsx",
-    "**/*.stories.mdx",
-    ".storybook/**",
-    "dist",
-    "node_modules"
-  ]
+  "exclude": ["**/*.stories.tsx", "**/*.stories.mdx", ".storybook/**"]
 }

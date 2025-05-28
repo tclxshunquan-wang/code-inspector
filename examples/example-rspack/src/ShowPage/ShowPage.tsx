@@ -8,6 +8,7 @@ export const ShowPage = () => {
     <>
       12312312
       <Inspector
+        keys={['Shift', 'c']}
         active={active}
         onActiveChange={setActive}
         onClickElement={(e) => {

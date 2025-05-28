@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 import type { Fiber } from 'react-reconciler';
-import type { TrustedEditor } from '@hyperse/inspector-launch-editor';
+import type { TrustedEditor } from '@hyperse/inspector-common';
 import type {
   ElementItemInfo,
   InspectContextPanel,
 } from '@react-dev-inspector/web-components';
-import type { DOMElement } from '../client/agent/dom-inspect-agent.js';
+import type { DOMElement } from '../agent/dom-inspect-agent.js';
 import type { InspectAgent } from './type-agent.js';
 import type { CodeInfo } from './type-code.js';
 

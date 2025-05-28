@@ -1,11 +1,11 @@
 import type { NextFunction, Request, RequestHandler, Response } from 'express';
 import launchEditor from 'launch-editor';
-import { join, resolve } from 'path';
-import { launchEditorEndpoint } from '../constant.js';
+import { join, resolve } from 'node:path';
+import { launchEditorEndpoint } from '@hyperse/inspector-common';
 import {
   type LaunchEditorParams,
   TrustedEditor,
-} from '../types/type-editor.js';
+} from '@hyperse/inspector-common';
 
 const trustedEditors = new Set(Object.values(TrustedEditor));
 

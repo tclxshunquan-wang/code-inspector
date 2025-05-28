@@ -6,7 +6,9 @@
     "noImplicitAny": true,
     "noEmit": false,
     "incremental": true,
-    "paths": {},
+    "paths": {
+      "@hyperse/inspector-common": ["../inspector-common/src/index.js"]
+    },
     "types": ["vitest/globals"]
   },
   "include": ["**/*.ts", "**/*.tsx"],

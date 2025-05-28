@@ -9,24 +9,16 @@
       "path": "examples/example-rspack",
     },
     {
+      "name": "inspector-common",
+      "path": "packages/inspector-common",
+    },
+    {
       "name": "inspector-babel-plugin",
       "path": "packages/inspector-babel-plugin",
     },
     {
-      "name": "inspector-vite",
-      "path": "packages/inspector-vite",
-    },
-    {
-      "name": "inspector-rspack",
-      "path": "packages/inspector-rspack",
-    },
-    {
-      "name": "inspector-webpack",
-      "path": "packages/inspector-webpack",
-    },
-    {
-      "name": "inspector-components",
-      "path": "packages/inspector-components",
+      "name": "inspector-swc-plugin",
+      "path": "packages/inspector-swc-plugin",
     },
     {
       "name": "inspector-launch-editor",
@@ -91,11 +83,9 @@
     "eslint.workingDirectories": [
       "./website",
       "./examples/example-rspack",
+      "./packages/inspector-common",
       "./packages/inspector-babel-plugin",
-      "./packages/inspector-vite",
-      "./packages/inspector-rspack",
-      "./packages/inspector-webpack",
-      "./packages/inspector-components",
+      "./packages/inspector-swc-plugin",
       "./packages/inspector-launch-editor",
       "./packages/inspector"
     ],

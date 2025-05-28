@@ -1,11 +1,11 @@
 {
-  "name": "@hyperse/inspector",
+  "name": "@hyperse/inspector-common",
   "version": "1.1.1",
   "homepage": "https://github.com/hyperse-io/code-inspector",
   "repository": {
     "type": "git",
     "url": "https://github.com/hyperse-io/code-inspector",
-    "directory": "packages/inspector"
+    "directory": "packages/inspector-vite"
   },
   "author": {
     "name": "Hyperse",
@@ -36,6 +36,7 @@
     "clean": "rimraf --no-glob ./dist ./_release ./coverage ./tsconfig.tsbuildinfo",
     "lint": "eslint .",
     "test": "run-s test-unit",
+    "test-task": "vitest run",
     "test-unit": "vitest run",
     "test-coverage": "vitest run --coverage",
     "test-unit-watch": "vitest watch --ui",
@@ -54,23 +55,6 @@
     "rimraf": "6.0.1",
     "typescript": "5.8.3",
     "vitest": "3.1.4"
-  },
-  "dependencies": {
-    "@hyperse-internal/tinykeys": "^1.0.3",
-    "@hyperse/inspector-common": "workspace:*",
-    "@hyperse/inspector-launch-editor": "workspace:*",
-    "@react-dev-inspector/web-components": "2.1.0-beta.7",
-    "@types/react-reconciler": "^0.32.0",
-    "express": "^5.1.0",
-    "launch-editor": "^2.10.0"
-  },
-  "peerDependencies": {
-    "react": "*"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    }
   },
   "engines": {
     "node": ">=18.0.0"

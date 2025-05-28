@@ -3,19 +3,14 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "noImplicitAny": false,
     "allowJs": true,
+    "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noEmit": false,
     "incremental": true
-    // "paths": {
-    //   "@hyperse/inspector": ["../../packages/inspector/src/index.js"],
-    //   "@hyperse/inspector-babel-plugin": [
-    //     "../../packages/inspector-babel-plugin/src/index.js"
-    //   ]
-    // }
   },
   "include": ["**/*.ts", "**/*.tsx", "rspack.config.mjs"],
   "exclude": ["**/node_modules", "**/.*/", "dist", "build"]

@@ -1,8 +1,8 @@
 import type {
   LaunchEditorParams,
   TrustedEditor,
-} from '@hyperse/inspector-launch-editor';
-import { launchEditorEndpoint } from '@hyperse/inspector-launch-editor';
+} from '@hyperse/inspector-common';
+import { launchEditorEndpoint } from '@hyperse/inspector-common';
 import type { CodeInfo } from '../types/type-code.js';
 import { fetcher } from './helper-fetcher.js';
 

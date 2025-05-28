@@ -50,6 +50,11 @@
     "test-unit-watch": "vitest watch --ui",
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
+  "dependencies": {
+    "@babel/core": "^7.27.3",
+    "@babel/helper-plugin-utils": "^7.27.1",
+    "@hyperse/inspector-common": "workspace:*"
+  },
   "devDependencies": {
     "@babel/preset-react": "^7.27.1",
     "@hyperse/eslint-config-hyperse": "^1.4.4",
@@ -74,9 +79,5 @@
   "publishConfig": {
     "access": "public",
     "directory": "_release/package"
-  },
-  "dependencies": {
-    "@babel/core": "^7.27.3",
-    "@babel/helper-plugin-utils": "^7.27.1"
   }
 }

@@ -1,6 +1,7 @@
 import { types as t } from '@babel/core';
 import { declare } from '@babel/helper-plugin-utils';
-import { FILE_NAME_VAR, PLUGIN_NAME, TRACE_ID } from './constant.js';
+import { TRACE_ID } from '@hyperse/inspector-common';
+import { FILE_NAME_VAR, PLUGIN_NAME } from './constant.js';
 import { formatTrace } from './helpers/format-trace.js';
 import type { PluginState } from './types/type-plugin.js';
 

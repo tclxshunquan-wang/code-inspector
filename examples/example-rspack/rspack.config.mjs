@@ -1,4 +1,4 @@
-import { createLaunchEditorMiddleware } from '@hyperse/inspector/server';
+import { createLaunchEditorMiddleware } from '@hyperse/inspector-launch-editor';
 import { DefinePlugin, HtmlRspackPlugin, ProgressPlugin } from '@rspack/core';
 import ReactRefreshPlugin from '@rspack/plugin-react-refresh';
 
@@ -12,7 +12,7 @@ const config = {
       /**
        * react-dev-inspector server config for rspack
        */
-      middlewares.unshift(createLaunchEditorMiddleware);
+      middlewares.unshift(createLaunchEditorMiddleware({}));
       return middlewares;
     },
   },
@@ -53,7 +53,7 @@ const config = {
                 },
               ],
             ],
-            // plugins: ['@react-dev-inspector/babel-plugin'],
+            plugins: ['../../packages/inspector-babel-plugin/dist/index.js'],
           },
         },
       },
