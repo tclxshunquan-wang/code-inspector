@@ -1,5 +1,5 @@
 import { type RefObject, useEffect, useRef, useState } from 'react';
-import { keybindings } from '@hyperse-internal/tinykeys';
+import { useTinykeys } from '@hyperse-internal/tinykeys';
 import { useEffectEvent } from './use-effect-event.js';
 import { useLayoutEffect } from './use-layout-effect.js';
 
@@ -52,17 +52,21 @@ export const useControlledActive = ({
     }
   });
 
-  const handelEscapeToCancel = useEffectEvent((event?: KeyboardEvent) => {
-    event?.preventDefault();
-    event?.stopImmediatePropagation();
-    deactivate?.();
+  const bindEvent = useTinykeys({
+    actionTree: {
+      esc: {
+        id: 'esc',
+        shortcut: ['esc'],
+      },
+    },
+    onActionSelect: useEffectEvent(() => {
+      deactivate?.();
+    }),
   });
 
   const handleActivate = useEffectEvent(() => {
     onActivate?.();
-    unbindRef.current = keybindings(window, {
-      esc: handelEscapeToCancel,
-    });
+    unbindRef.current = bindEvent();
   });
 
   const handleDeactivate = useEffectEvent(() => {

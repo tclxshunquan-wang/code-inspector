@@ -1,5 +1,5 @@
 import { type RefObject, useEffect } from 'react';
-import { keybindings } from '@hyperse-internal/tinykeys';
+import { useTinykeys } from '@hyperse-internal/tinykeys';
 import { isMac } from '../helpers/helper-platform.js';
 
 /**
@@ -23,38 +23,40 @@ export const useHotkeyToggle = ({
    *
    * Setting `keys={null}` explicitly means that disable use hotkeys to trigger it.
    */
-  keys?: string[] | null;
+  keys: string[] | null;
   /** Whether to disable all behavior include hotkeys listening or trigger */
   disable?: boolean;
   activeRef: RefObject<boolean>;
   activate: () => void;
   deactivate: () => void;
 }) => {
-  const hotkey: string | null = keys === null ? null : (keys ?? []).join('+');
+  const hotkey = (keys || defaultHotkeys()).join('+');
+
+  const handleActionSelect = () => {
+    if (activeRef.current) {
+      deactivate();
+    } else {
+      activate();
+    }
+  };
+
+  const bindEvent = useTinykeys({
+    actionTree: {
+      [hotkey]: {
+        id: hotkey,
+        shortcut: [hotkey],
+      },
+    },
+    onActionSelect: handleActionSelect,
+  });
 
   useEffect(() => {
-    const handleHotKeys = (event?: KeyboardEvent) => {
-      event?.preventDefault();
-      event?.stopImmediatePropagation();
-      if (activeRef.current) {
-        deactivate();
-      } else {
-        activate();
-      }
-    };
-
-    const bindKey =
-      hotkey === null || disable ? null : hotkey || defaultHotkeys().join('+');
-
-    if (bindKey) {
-      const unbind = keybindings(window, {
-        [bindKey]: handleHotKeys,
-      });
-
-      return () => {
-        unbind();
-      };
+    if (disable) {
+      return;
     }
-    return;
+    const unbind = bindEvent();
+    return () => {
+      unbind();
+    };
   }, [hotkey, disable]);
 };
