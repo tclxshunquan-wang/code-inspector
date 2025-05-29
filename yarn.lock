@@ -5202,7 +5202,7 @@ __metadata:
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
     "@hyperse/inspector-common": "workspace:*"
     "@hyperse/tinykeys": "npm:^1.0.1"
-    "@react-dev-inspector/web-components": "npm:2.1.0-beta.7"
+    "@react-dev-inspector/web-components": "npm:^2.1.0-beta.7"
     "@types/node": "npm:22.15.21"
     "@types/react-reconciler": "npm:^0.32.0"
     "@vitest/coverage-istanbul": "npm:3.1.4"
@@ -6674,25 +6674,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-dev-inspector/launch-editor-endpoint@npm:^2.1.0-beta.7":
+"@react-dev-inspector/launch-editor-endpoint@npm:^2.1.0-beta.10":
   version: 2.1.0-beta.10
   resolution: "@react-dev-inspector/launch-editor-endpoint@npm:2.1.0-beta.10"
   checksum: 10c0/0b198000722523befc78022871ef001ef090ade629dab6dd63546f20f39bd51f8b189b6fc21c8eee18830e762a23a6a31a2781ddf93c5417aa8c9f24b6f3c663
   languageName: node
   linkType: hard
 
-"@react-dev-inspector/web-components@npm:2.1.0-beta.7":
-  version: 2.1.0-beta.7
-  resolution: "@react-dev-inspector/web-components@npm:2.1.0-beta.7"
+"@react-dev-inspector/web-components@npm:^2.1.0-beta.7":
+  version: 2.1.0-beta.10
+  resolution: "@react-dev-inspector/web-components@npm:2.1.0-beta.10"
   dependencies:
     "@floating-ui/core": "npm:^1.6.0"
     "@kobalte/core": "npm:^0.13.2"
-    "@react-dev-inspector/launch-editor-endpoint": "npm:^2.1.0-beta.7"
+    "@react-dev-inspector/launch-editor-endpoint": "npm:^2.1.0-beta.10"
     rxjs: "npm:^8.0.0-alpha.14"
     solid-element: "npm:^1.8.1"
     solid-js: "npm:^1.8.18"
     tailwind-merge: "npm:^2.3.0"
-  checksum: 10c0/d9e98bf2a82dca12d443475a70380cbeacac5ca31d8e0305d2ec4d6f29bc3892ae32dca488f2ae4b3837e410866d6a71812001754f3dbc10ac930ced87194801
+  checksum: 10c0/7729b78714d44cd7d6c28d5b2da580a8af0294889e79f504154cc99d426b66b0361982e6f667767663dccee871797c02d23113260df93c5dc5e45d55b841bccf
   languageName: node
   linkType: hard
 

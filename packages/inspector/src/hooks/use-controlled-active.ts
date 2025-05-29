@@ -1,5 +1,5 @@
 import { type RefObject, useEffect, useRef, useState } from 'react';
-import { useTinykeys } from '@hyperse-internal/tinykeys';
+import { useTinykeys } from '@hyperse/tinykeys';
 import { useEffectEvent } from './use-effect-event.js';
 import { useLayoutEffect } from './use-layout-effect.js';
 

@@ -1,5 +1,5 @@
 import { type RefObject, useEffect } from 'react';
-import { useTinykeys } from '@hyperse-internal/tinykeys';
+import { useTinykeys } from '@hyperse/tinykeys';
 import { isMac } from '../helpers/helper-platform.js';
 
 /**
@@ -17,7 +17,7 @@ export const useHotkeyToggle = ({
   /**
    * Inspector Component toggle hotkeys,
    *
-   * supported keys see: https://github.com/hyperse-internal/tinykeys
+   * supported keys see: https://github.com/hyperse-io/tinykeys
    *
    * @default - `['$mod', 'i']` on macOS, `['Ctrl', 'i']` on other platforms.
    *

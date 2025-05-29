@@ -18,14 +18,6 @@
       "import": "./index.js",
       "types": "./dist/index.d.ts"
     },
-    "./client": {
-      "import": "./client/index.js",
-      "types": "./dist/client/index.d.ts"
-    },
-    "./trpc": {
-      "import": "./trpc/index.js",
-      "types": "./dist/trpc/index.d.ts"
-    },
     "./package.json": "./package.json"
   },
   "types": "./dist/index.d.ts",
