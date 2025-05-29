@@ -7,10 +7,10 @@ use swc_core::{
 };
 use transform_source::InspectorPlugin;
 
-/// SWC plugin for code inspector
+/// SWC plugin for code transform
 ///
 /// This plugin adds source location information to JSX elements
-/// by injecting a `__inspectorsource` attribute with file path,
+/// by injecting a `__hpssource` attribute with file path,
 /// line number, and column number.
 #[plugin_transform]
 pub fn inspector_swc_plugin(program: Program, metadata: TransformPluginProgramMetadata) -> Program {
@@ -23,8 +23,10 @@ pub fn inspector_swc_plugin(program: Program, metadata: TransformPluginProgramMe
         }
     };
 
+    let source_map = metadata.source_map;
+
     // Create and run the visitor
-    let mut visitor = InspectorPlugin::new(file_path);
+    let mut visitor = InspectorPlugin::new(file_path, source_map);
     let mut program = program;
     program.visit_mut_with(&mut visitor);
     program

@@ -1,17 +1,18 @@
 use std::fmt;
 use swc_core::{
-    common::{SyntaxContext, DUMMY_SP},
+    common::{BytePos, SyntaxContext, DUMMY_SP},
     ecma::{
         ast::*,
         visit::{VisitMut, VisitMutWith},
     },
 };
 
-const TRACE_ID: &str = "__inspectorsource";
+const TRACE_ID: &str = "__hpssource";
 
 pub struct InspectorPlugin {
     filename: String,
     file_name_identifier: Option<Ident>,
+    source_map: swc_core::plugin::proxies::PluginSourceMapProxy,
 }
 
 impl fmt::Debug for InspectorPlugin {
@@ -27,17 +28,28 @@ impl fmt::Debug for InspectorPlugin {
 }
 
 impl InspectorPlugin {
-    pub fn new(filename: String) -> Self {
+    pub fn new(
+        filename: String,
+        source_map: swc_core::plugin::proxies::PluginSourceMapProxy,
+    ) -> Self {
         Self {
             filename,
             file_name_identifier: None,
+            source_map,
         }
+    }
+
+    fn lookup(&self, pos: BytePos) -> (u32, u32) {
+        let loc = self.source_map.get_code_map().lookup_char_pos(pos);
+        (loc.line as u32, (loc.col_display + 1) as u32)
     }
 }
 
 impl VisitMut for InspectorPlugin {
     fn visit_mut_jsx_opening_element(&mut self, el: &mut JSXOpeningElement) {
-        // Skip if element has no location info or already has __inspectorsource
+        let (line, col) = self.lookup(el.span.lo);
+
+        // Skip if element has no location info or already has __hpssource
         if el.span.is_dummy()
             || el.attrs.iter().any(|attr| {
                 if let JSXAttrOrSpread::JSXAttr(attr) = attr {
@@ -80,7 +92,7 @@ impl VisitMut for InspectorPlugin {
                     ),
                     value: Box::new(Expr::Lit(Lit::Num(Number {
                         span: DUMMY_SP,
-                        value: el.span.lo.0 as f64,
+                        value: line as f64,
                         raw: None,
                     }))),
                 }))),
@@ -90,14 +102,14 @@ impl VisitMut for InspectorPlugin {
                     ),
                     value: Box::new(Expr::Lit(Lit::Num(Number {
                         span: DUMMY_SP,
-                        value: (el.span.lo.0 + 1) as f64, // Convert to 1-based
+                        value: col as f64, // Convert to 1-based
                         raw: None,
                     }))),
                 }))),
             ],
         };
 
-        // Add __inspectorsource attribute
+        // Add __hpssource attribute
         el.attrs.push(JSXAttrOrSpread::JSXAttr(JSXAttr {
             span: DUMMY_SP,
             name: JSXAttrName::Ident(

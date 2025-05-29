@@ -18,8 +18,6 @@ describe(`tests preset babel react, inject inspector source`, () => {
       plugins: [inspectorBabelPlugin],
     })?.code;
 
-    console.log(compiledCode);
-
     const targetCode = `
       ${TRACE_ID}: {
       fileName: _jsxFileName2,

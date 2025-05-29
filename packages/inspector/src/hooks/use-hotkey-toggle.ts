@@ -23,7 +23,7 @@ export const useHotkeyToggle = ({
    *
    * Setting `keys={null}` explicitly means that disable use hotkeys to trigger it.
    */
-  keys: string[] | null;
+  keys?: string[] | null;
   /** Whether to disable all behavior include hotkeys listening or trigger */
   disable?: boolean;
   activeRef: RefObject<boolean>;

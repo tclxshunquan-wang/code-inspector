@@ -54,7 +54,7 @@ describe('wasm', () => {
 
     // Verify that the transformation was successful
     expect(code).toBeDefined();
-    expect(code).toContain('__inspectorsource');
+    expect(code).toContain('__hpssource');
     expect(code).toContain('fileName');
     expect(code).toContain('lineNumber');
     expect(code).toContain('columnNumber');

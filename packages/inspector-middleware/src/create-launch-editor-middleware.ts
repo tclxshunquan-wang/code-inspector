@@ -50,7 +50,7 @@ export const createLaunchEditorMiddleware: (
     if (!params.fileName) {
       res.statusCode = 400;
       res.end(
-        `[evolve-launch-editor]: required query param "fileName" is missing.`
+        `[hps-launch-editor]: required query param "fileName" is missing.`
       );
       return;
     }
@@ -68,7 +68,7 @@ export const createLaunchEditorMiddleware: (
     if (params.editor && !trustedEditors.has(params.editor)) {
       res.statusCode = 400;
       res.end(
-        `[evolve-launch-editor]: the specified editor (${params.editor}) is not trusted on server! To open this editor, please use URL-scheme to call it from browser.`
+        `[hps-launch-editor]: the specified editor (${params.editor}) is not trusted on server! To open this editor, please use URL-scheme to call it from browser.`
       );
       return;
     }
