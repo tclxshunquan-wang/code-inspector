@@ -1,4 +1,4 @@
-name: CI-inspector-rspack
+name: CI-inspector-babel-plugin
 
 on:
   push:
@@ -54,24 +54,24 @@ jobs:
         uses: ./.github/actions/yarn-nm-install
 
       - name: Typecheck
-        working-directory: packages/inspector-rspack
+        working-directory: packages/inspector-babel-plugin
         run: |
           yarn typecheck
 
       - name: Linter
-        working-directory: packages/inspector-rspack
+        working-directory: packages/inspector-babel-plugin
         run: |
           yarn lint
 
       - name: Unit tests
-        working-directory: packages/inspector-rspack
+        working-directory: packages/inspector-babel-plugin
         run: |
           yarn test-unit --passWithNoTests
 
-      - name: Build inspector-rspack
-        working-directory: packages/inspector-rspack
-        run: |
-          yarn build
+      # - name: Build inspector-babel-plugin
+      #   working-directory: packages/inspector-babel-plugin
+      #   run: |
+      #     yarn build
   # commit:
   #   runs-on: ubuntu-latest
   #   steps:
@@ -86,7 +86,7 @@ jobs:
   #       uses: ./.github/actions/yarn-nm-install
 
   #     - name: Unit test coverage
-  #       working-directory: packages/inspector-rspack
+  #       working-directory: packages/inspector-webpack
   #       run: |
   #         yarn test-coverage
 
@@ -98,7 +98,7 @@ jobs:
   #         git fetch
   #         git checkout gb_pages
   #         mkdir -p ./gb_pages
-  #         cp -R ./packages/inspector-rspack/coverage/* ./gb_pages/coverage/inspector-rspack
+  #         cp -R ./packages/inspector-webpack/coverage/* ./gb_pages/coverage/inspector-webpack
   #         git add gb_pages/*
   #         git commit -m "Update page"
   #         git push

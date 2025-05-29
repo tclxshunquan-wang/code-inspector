@@ -1,4 +1,4 @@
-name: CI-inspector-vite
+name: CI-inspector-swc-plugin
 
 on:
   push:
@@ -54,24 +54,24 @@ jobs:
         uses: ./.github/actions/yarn-nm-install
 
       - name: Typecheck
-        working-directory: packages/inspector-vite
+        working-directory: packages/inspector-swc-plugin
         run: |
           yarn typecheck
 
       - name: Linter
-        working-directory: packages/inspector-vite
+        working-directory: packages/inspector-swc-plugin
         run: |
           yarn lint
 
       - name: Unit tests
-        working-directory: packages/inspector-vite
+        working-directory: packages/inspector-swc-plugin
         run: |
           yarn test-unit --passWithNoTests
 
-      - name: Build inspector-vite
-        working-directory: packages/inspector-vite
-        run: |
-          yarn build
+      # - name: Build inspector-swc-plugin
+      #   working-directory: packages/inspector-swc-plugin
+      #   run: |
+      #     yarn build
   # commit:
   #   runs-on: ubuntu-latest
   #   steps:
@@ -86,7 +86,7 @@ jobs:
   #       uses: ./.github/actions/yarn-nm-install
 
   #     - name: Unit test coverage
-  #       working-directory: packages/inspector-vite
+  #       working-directory: packages/inspector-rspack
   #       run: |
   #         yarn test-coverage
 
@@ -98,7 +98,7 @@ jobs:
   #         git fetch
   #         git checkout gb_pages
   #         mkdir -p ./gb_pages
-  #         cp -R ./packages/inspector-vite/coverage/* ./gb_pages/coverage/inspector-vite
+  #         cp -R ./packages/inspector-rspack/coverage/* ./gb_pages/coverage/inspector-rspack
   #         git add gb_pages/*
   #         git commit -m "Update page"
   #         git push
