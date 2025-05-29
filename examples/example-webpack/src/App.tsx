@@ -10,6 +10,7 @@ export const AppPage = () => {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-8 overflow-auto p-12">
       <Inspector
+        disable={false}
         keys={['$mod', 'i']}
         active={active}
         onActiveChange={setActive}

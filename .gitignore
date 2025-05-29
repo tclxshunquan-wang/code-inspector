@@ -129,3 +129,7 @@ dist
 .pnp.*
 .netrc
 .swc
+
+
+#rust
+target/

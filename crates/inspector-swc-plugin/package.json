@@ -13,12 +13,12 @@
   },
   "type": "module",
   "license": "SEE LICENSE IN FILE 'LICENSE'",
+  "main": "./dist/inspector_swc_plugin.wasm",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./package.json": "./package.json"
+      "require": "./dist/inspector_swc_plugin.wasm",
+      "import": "./dist/inspector_swc_plugin.wasm"
+    }
   },
   "types": "./dist/index.d.ts",
   "files": [
@@ -30,13 +30,13 @@
     "package.json"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc -p ./tsconfig.build.json",
+    "build": "rimraf ./dist && mkdir ./dist && cargo build --release -p inspector_swc_plugin --target wasm32-wasip1 && cp ../../target/wasm32-wasip1/release/inspector_swc_plugin.wasm ./dist/inspector_swc_plugin.wasm",
+    "build:debug": "rimraf ./dist && mkdir ./dist && cargo build -p inspector_swc_plugin --target wasm32-wasip1 && cp ../../target/wasm32-wasip1/debug/inspector_swc_plugin.wasm ./dist/inspector_swc_plugin.wasm",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "build-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
     "clean": "rimraf --no-glob ./dist ./_release ./coverage ./tsconfig.tsbuildinfo",
     "lint": "eslint .",
     "test": "run-s test-unit",
-    "test-task": "vitest run",
     "test-unit": "vitest run",
     "test-coverage": "vitest run --coverage",
     "test-unit-watch": "vitest watch --ui",
@@ -44,16 +44,17 @@
   },
   "devDependencies": {
     "@hyperse/eslint-config-hyperse": "^1.4.4",
+    "@swc/core": "1.11.21",
+    "@swc/wasm-web": "1.11.29",
     "@types/node": "22.15.21",
     "@vitest/coverage-istanbul": "3.1.4",
     "@vitest/ui": "3.1.4",
     "eslint": "^9.27.0",
     "next": "^15.3.2",
     "npm-run-all": "4.1.5",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
     "rimraf": "6.0.1",
     "typescript": "5.8.3",
+    "vite-tsconfig-paths": "5.1.4",
     "vitest": "3.1.4"
   },
   "engines": {

@@ -3,12 +3,9 @@ import { keybindings } from '@hyperse-internal/tinykeys';
 import { isMac } from '../helpers/helper-platform.js';
 
 /**
- * `v2.0.0` changes:
- *   - make 'Ctrl + Shift + Alt + C' as default shortcut on Windows/Linux
- *   - export `defaultHotkeys`
+ * make 'Ctrl + i' as default shortcut on Windows/Linux
  */
-export const defaultHotkeys = () =>
-  isMac() ? ['Ctrl', 'Shift', 'Command', 'C'] : ['Ctrl', 'Shift', 'Alt', 'C'];
+export const defaultHotkeys = () => (isMac() ? ['$mod', 'i'] : ['Ctrl', 'i']);
 
 export const useHotkeyToggle = ({
   keys,
@@ -22,7 +19,7 @@ export const useHotkeyToggle = ({
    *
    * supported keys see: https://github.com/hyperse-internal/tinykeys
    *
-   * @default - `['Ctrl', 'Shift', 'Command', 'C']` on macOS, `['Ctrl', 'Shift', 'Alt', 'C']` on other platforms.
+   * @default - `['$mod', 'i']` on macOS, `['Ctrl', 'i']` on other platforms.
    *
    * Setting `keys={null}` explicitly means that disable use hotkeys to trigger it.
    */
@@ -30,7 +27,6 @@ export const useHotkeyToggle = ({
   /** Whether to disable all behavior include hotkeys listening or trigger */
   disable?: boolean;
   activeRef: RefObject<boolean>;
-
   activate: () => void;
   deactivate: () => void;
 }) => {

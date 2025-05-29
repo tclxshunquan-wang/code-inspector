@@ -1,13 +1,11 @@
-import { fileURLToPath } from 'url';
+import tsconfigPaths from 'vite-tsconfig-paths';
 import { configDefaults, defineConfig } from 'vitest/config';
 
 export default defineConfig({
+  plugins: [tsconfigPaths()],
   test: {
     globals: true,
     exclude: [...configDefaults.exclude],
-    alias: {
-      '@/': fileURLToPath(new URL('./src/', import.meta.url)),
-    },
     include: ['**/?(*.){test,spec}.?(c|m)[jt]s?(x)'],
   },
 });
