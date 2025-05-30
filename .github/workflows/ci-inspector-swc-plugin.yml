@@ -58,11 +58,11 @@ jobs:
         uses: ./.github/actions/yarn-nm-install
 
       - name: Unit tests
-        working-directory: packages/inspector-swc-plugin
+        working-directory: crates/inspector-swc-plugin
         run: |
           yarn test-unit --passWithNoTests
 
       - name: Build inspector-swc-plugin
-        working-directory: packages/inspector-swc-plugin
+        working-directory: crates/inspector-swc-plugin
         run: |
           yarn build
