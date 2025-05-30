@@ -16,7 +16,7 @@ export interface CodeInfo {
 /**
  * props that injected into react nodes
  *
- * like <div __hpssource={{fileName: /usr/workspace/inspector-demo/src/index.js, lineNumber: 10, columnNumber: 1}}/>
+ * like <div __hps_source={{fileName: /usr/workspace/inspector-demo/src/index.js, lineNumber: 10, columnNumber: 1}}/>
  * this props will be record in fiber
  */
 export interface CodeDataAttribute {

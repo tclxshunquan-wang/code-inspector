@@ -1,11 +1,6 @@
 import { type RefObject, useEffect } from 'react';
 import { useTinykeys } from '@hyperse/tinykeys';
-import { isMac } from '../helpers/helper-platform.js';
-
-/**
- * make 'Ctrl + i' as default shortcut on Windows/Linux
- */
-export const defaultHotkeys = () => (isMac() ? ['$mod', 'i'] : ['Ctrl', 'i']);
+import { defaultHotkeys } from '../constant.js';
 
 export const useHotkeyToggle = ({
   keys,

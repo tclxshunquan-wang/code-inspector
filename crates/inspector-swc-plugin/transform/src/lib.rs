@@ -7,7 +7,7 @@ use swc_core::{
     },
 };
 
-const TRACE_ID: &str = "__hpssource";
+const TRACE_ID: &str = "__hps_source";
 
 pub struct InspectorPlugin {
     filename: String,
@@ -49,7 +49,7 @@ impl VisitMut for InspectorPlugin {
     fn visit_mut_jsx_opening_element(&mut self, el: &mut JSXOpeningElement) {
         let (line, col) = self.lookup(el.span.lo);
 
-        // Skip if element has no location info or already has __hpssource
+        // Skip if element has no location info or already has __hps_source
         if el.span.is_dummy()
             || el.attrs.iter().any(|attr| {
                 if let JSXAttrOrSpread::JSXAttr(attr) = attr {
@@ -109,7 +109,7 @@ impl VisitMut for InspectorPlugin {
             ],
         };
 
-        // Add __hpssource attribute
+        // Add __hps_source attribute
         el.attrs.push(JSXAttrOrSpread::JSXAttr(JSXAttr {
             span: DUMMY_SP,
             name: JSXAttrName::Ident(

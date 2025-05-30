@@ -10,7 +10,7 @@ use transform_source::InspectorPlugin;
 /// SWC plugin for code transform
 ///
 /// This plugin adds source location information to JSX elements
-/// by injecting a `__hpssource` attribute with file path,
+/// by injecting a `__hps_source` attribute with file path,
 /// line number, and column number.
 #[plugin_transform]
 pub fn inspector_swc_plugin(program: Program, metadata: TransformPluginProgramMetadata) -> Program {

@@ -52,15 +52,21 @@ export interface InspectorProps<
     ElementInInspectAgents<InspectAgents> = ElementInInspectAgents<InspectAgents>,
 > {
   /**
+   * Whether to print the promotion message
+   *
+   * @default `false`
+   */
+  hideConsole?: boolean;
+
+  /**
    * Inspector Component toggle hotkeys,
    *
    * supported keys see: https://github.com/jaywcjlove/hotkeys#supported-keys
    *
-   * @default - `['Ctrl', 'Shift', 'Command', 'C']` on macOS, `['Ctrl', 'Shift', 'Alt', 'C']` on other platforms.
+   * @default - `['$mod', 'i']` on macOS, `['Ctrl', 'i']` on other platforms.
    *
-   * Setting `keys={null}` explicitly means that disable use hotkeys to trigger it.
    */
-  keys?: string[] | null;
+  keys?: string[];
 
   /**
    * If setting `active` prop, the Inspector will be a Controlled React Component,
