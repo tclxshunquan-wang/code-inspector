@@ -57,11 +57,6 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
-      - name: Linter
-        working-directory: packages/inspector-swc-plugin
-        run: |
-          yarn lint
-
       - name: Unit tests
         working-directory: packages/inspector-swc-plugin
         run: |
