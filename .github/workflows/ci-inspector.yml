@@ -53,10 +53,10 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
-      # - name: Typecheck
-      #   working-directory: packages/inspector
-      #   run: |
-      #     yarn typecheck
+      - name: Typecheck
+        working-directory: packages/inspector
+        run: |
+          yarn typecheck
 
       - name: Linter
         working-directory: packages/inspector
@@ -68,10 +68,10 @@ jobs:
         run: |
           yarn test-unit --passWithNoTests
 
-      - name: Build inspector
-        working-directory: packages/inspector
-        run: |
-          yarn build
+      # - name: Build inspector
+      #   working-directory: packages/inspector
+      #   run: |
+      #     yarn build
   # commit:
   #   runs-on: ubuntu-latest
   #   steps:

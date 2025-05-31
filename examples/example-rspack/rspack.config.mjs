@@ -49,51 +49,34 @@ const config = {
         type: 'css',
       },
       {
-        test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['@babel/preset-env', { targets: 'defaults' }],
-              '@babel/preset-typescript',
-              [
-                '@babel/preset-react',
-                {
-                  runtime: 'automatic',
-                },
-              ],
-            ],
-            plugins: ['../../packages/inspector-babel-plugin/dist/index.js'],
+        test: /\.tsx?$/,
+        exclude: [/[\\/]node_modules[\\/]/],
+        loader: 'builtin:swc-loader',
+        options: {
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+              decorators: true,
+              jsx: true,
+            },
+            externalHelpers: true,
+            experimental: {
+              keepImportAttributes: true,
+              plugins: [['@hyperse/inspector-swc-plugin', {}]],
+            },
+            transform: {
+              decoratorMetadata: true,
+              // useDefineForClassFields: true,
+              react: {
+                runtime: 'automatic',
+                development: isDev,
+                // https://www.rspack.dev/blog/announcing-0-4#deprecating-builtinreactrefresh
+                refresh: isDev,
+              },
+            },
           },
         },
       },
-      // {
-      //   test: /\.tsx?$/,
-      //   exclude: [/[\\/]node_modules[\\/]/],
-      //   loader: 'builtin:swc-loader',
-      //   options: {
-      //     sourceMap: isDev,
-      //     jsc: {
-      //       parser: {
-      //         syntax: 'typescript',
-      //         decorators: true,
-      //         jsx: true,
-      //       },
-      //       externalHelpers: true,
-      //       transform: {
-      //         decoratorMetadata: true,
-      //         // useDefineForClassFields: true,
-      //         react: {
-      //           runtime: 'automatic',
-      //           development: isDev,
-      //           // https://www.rspack.dev/blog/announcing-0-4#deprecating-builtinreactrefresh
-      //           refresh: isDev,
-      //         },
-      //       },
-      //     },
-      //   },
-      // },
     ],
   },
   plugins: [

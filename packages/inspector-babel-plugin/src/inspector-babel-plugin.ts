@@ -17,7 +17,7 @@ import type { PluginState } from './types/type-plugin.js';
  * becomes:
  *
  * var __jsxFileName = 'this/file.js';
- * <sometag __inspectorsource={{fileName: __jsxFileName, lineNumber: 10, columnNumber: 1}}/>
+ * <sometag __hps_source={{fileName: __jsxFileName, lineNumber: 10, columnNumber: 1}}/>
  */
 export default declare<PluginState>(() => {
   const isSourceAttr = (attr: t.Node) =>

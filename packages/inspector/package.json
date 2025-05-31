@@ -1,6 +1,6 @@
 {
   "name": "@hyperse/inspector",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "homepage": "https://github.com/hyperse-io/code-inspector",
   "repository": {
     "type": "git",
@@ -30,9 +30,10 @@
     "package.json"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc -p ./tsconfig.build.json",
+    "build": "rimraf dist && tsc -p ./tsconfig.build.json && npm run minify",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "build-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
+    "minify": "node ../../scripts/minify.mjs --dest=dist",
     "clean": "rimraf --no-glob ./dist ./_release ./coverage ./tsconfig.tsbuildinfo",
     "lint": "eslint .",
     "test": "run-s test-unit",
@@ -43,11 +44,12 @@
   },
   "devDependencies": {
     "@hyperse/eslint-config-hyperse": "^1.4.4",
-    "@types/node": "22.15.21",
+    "@types/node": "22.15.29",
     "@vitest/coverage-istanbul": "3.1.4",
     "@vitest/ui": "3.1.4",
-    "eslint": "^9.27.0",
-    "next": "^15.3.2",
+    "eslint": "^9.28.0",
+    "jsdom": "26.1.0",
+    "next": "^15.3.3",
     "npm-run-all": "4.1.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -56,14 +58,13 @@
     "vitest": "3.1.4"
   },
   "dependencies": {
-    "@hyperse-internal/tinykeys": "^1.0.3",
     "@hyperse/inspector-common": "workspace:*",
-    "@react-dev-inspector/web-components": "2.1.0-beta.7",
+    "@hyperse/tinykeys": "^1.0.1",
+    "@react-dev-inspector/web-components": "^2.1.0-beta.7",
     "@types/react-reconciler": "^0.32.0"
   },
   "peerDependencies": {
-    "@hyperse/inspector-middleware": "workspace:*",
-    "react": ">=18.2.0"
+    "react": "*"
   },
   "peerDependenciesMeta": {
     "react": {

@@ -10,15 +10,15 @@ export const AppPage = () => {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-8 overflow-auto p-12">
       <Inspector
-        keys={['Shift', 'c']}
+        keys={['$mod', 'i']}
         active={active}
         onActiveChange={setActive}
-        onClickElement={(e) => {
+        onHoverElement={(e) => {
           console.log(e);
         }}
       />
       <Chip color="primary" variant="flat">
-        Hyserpe
+        Hyperse
       </Chip>
       <span className="text-2xl font-bold">Hyperse Code Inspector</span>
       <Review />

@@ -9,6 +9,10 @@
       "path": "examples/example-rspack",
     },
     {
+      "name": "example-webpack",
+      "path": "examples/example-webpack",
+    },
+    {
       "name": "inspector-common",
       "path": "packages/inspector-common",
     },
@@ -18,7 +22,7 @@
     },
     {
       "name": "inspector-swc-plugin",
-      "path": "packages/inspector-swc-plugin",
+      "path": "crates/inspector-swc-plugin",
     },
     {
       "name": "inspector-middleware",
@@ -83,9 +87,10 @@
     "eslint.workingDirectories": [
       "./website",
       "./examples/example-rspack",
+      "./examples/example-webpack",
+      "./crates/inspector-swc-plugin",
       "./packages/inspector-common",
       "./packages/inspector-babel-plugin",
-      "./packages/inspector-swc-plugin",
       "./packages/inspector-middleware",
       "./packages/inspector"
     ],
