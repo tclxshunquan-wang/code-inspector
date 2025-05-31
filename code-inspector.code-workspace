@@ -71,7 +71,6 @@
     },
     "[typescript]": {
       "editor.formatOnSave": true,
-      "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     },
     "[rust]": {
       "editor.formatOnSave": true,
