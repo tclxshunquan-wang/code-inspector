@@ -1,0 +1,103 @@
+name: CI-inspector
+
+on:
+  push:
+    branches:
+      - main
+      - major
+      - minor
+      - dev
+    # Only consider those paths to trigger the action
+    paths:
+      - 'packages/**'
+      - 'package.json'
+      - '*.lock'
+      - '.yarnrc.yml'
+      - 'tsconfig.base.json'
+      - '.prettier*'
+      - '.github/**'
+
+  pull_request:
+    branches:
+      - main
+      - major
+      - minor
+      - dev
+    types:
+      - opened
+      - synchronize
+      - reopened
+    # Only consider those paths to trigger the action
+    paths:
+      - 'packages/**'
+      - 'package.json'
+      - '*.lock'
+      - '.yarnrc.yml'
+      - 'tsconfig.base.json'
+      - '.prettier*'
+      - '.github/**'
+ 
+jobs:
+  # Build the inspector-swc-plugin
+  build-rust:
+    name: Build inspector-swc-plugin
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 📥 Monorepo install
+        uses: ./.github/actions/yarn-nm-install
+
+      - name: 📥 Add wasm32-wasip1 target
+        run: rustup target add wasm32-wasip1
+
+      - name: Build inspector-swc-plugin
+        working-directory: crates/inspector-swc-plugin
+        run: |
+          yarn build
+
+  release:
+    # Basic security: the release job can only be executed from this repo and from the main branch (not a remote thing)
+    name: Release and changelog
+    runs-on: ubuntu-latest
+    needs: build-rust
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          # To run comparison we need more than the latest commit.
+          # @link https://github.com/actions/checkout#fetch-all-history-for-all-tags-and-branches
+          fetch-depth: 0
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
+      - name: 📥 Monorepo install
+        uses: ./.github/actions/yarn-nm-install
+
+      # @link https://github.com/changesets/action
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: yarn g:release
+          cwd: ${{ github.workspace }}
+          title: '[Release] Version packages'
+          # Optional, might be used in conjunction with GITHUB_TOKEN to
+          # allow running the workflows on a Version package action.
+          # Be aware of security implications.
+          # setupGitUser: true
+        env:
+          # See https://github.com/changesets/action/issues/147
+          HOME: ${{ github.workspace }}
+          # Allows to download / query / comment packages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Allows to publish packages
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # Support cargo
+          CARGO_TERM_COLOR: always
