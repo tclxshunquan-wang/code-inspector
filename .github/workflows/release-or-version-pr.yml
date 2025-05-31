@@ -3,7 +3,7 @@ name: ReleaseOrVersionPR
 on:
   push:
     branches:
-      - main
+      - feat/code-inspector
 
 jobs:
   release:
@@ -27,20 +27,24 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
+      - name: 📥 Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          default: true
+          
+      - name: Add cargo to PATH
+        run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
       - name: Add wasm32-wasip1 target
         run: rustup target add wasm32-wasip1
-
-      - name: Build inspector-swc-plugin
-        working-directory: crates/inspector-swc-plugin
-        run: |
-          yarn build
 
       # @link https://github.com/changesets/action
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: yarn g:release
+          publish: yarn g:build
           cwd: ${{ github.workspace }}
           title: '[Release] Version packages'
           # Optional, might be used in conjunction with GITHUB_TOKEN to
