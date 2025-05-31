@@ -27,13 +27,17 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/yarn-nm-install
 
-      - name: Add wasm32-wasip1 target
-        run: rustup target add wasm32-wasip1
+      - name: 📥 Rust install 
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          default: true  
+          
+      - name: 📥 Add cargo to PATH
+        run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH  
 
-      - name: Build inspector-swc-plugin
-        working-directory: crates/inspector-swc-plugin
-        run: |
-          yarn build
+      - name: 📥 Add wasm32-wasip1 target
+        run: rustup target add wasm32-wasip1
 
       # @link https://github.com/changesets/action
       - name: Create Release Pull Request or Publish to npm
