@@ -3,7 +3,7 @@ name: ReleaseOrVersionPR
 on:
   push:
     branches:
-      - feat/rust-ci
+      - main
 
 jobs:
   release:
@@ -40,7 +40,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: yarn g:build
+          publish: yarn g:release
           cwd: ${{ github.workspace }}
           title: '[Release] Version packages'
           # Optional, might be used in conjunction with GITHUB_TOKEN to
