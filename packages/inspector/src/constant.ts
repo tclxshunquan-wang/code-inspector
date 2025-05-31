@@ -1,4 +1,4 @@
-import { isMac } from './helpers/helper-platform.js';
+import { isMac } from '@hyperse/tinykeys';
 
 /**
  * Default hotkeys for toggling the inspector component

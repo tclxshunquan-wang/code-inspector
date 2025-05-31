@@ -19,7 +19,7 @@ export const AppPage = () => {
         }}
       />
       <Chip color="primary" variant="flat">
-        Hyserpe
+        Hyperse
       </Chip>
       <span className="text-2xl font-bold">Hyperse Code Inspector</span>
       <Review />

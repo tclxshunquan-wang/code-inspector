@@ -28,7 +28,7 @@
     "examples/*"
   ],
   "scripts": {
-    "g:clean": "yarn workspaces foreach --all -ptv run clean",
+    "g:clean": "yarn clean:global-cache && yarn workspaces foreach -At run clean",
     "g:build": "yarn g:build-release",
     "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
     "g:build-release": "yarn workspaces foreach -At run build-release",
@@ -44,6 +44,7 @@
     "g:changeset": "changeset",
     "g:version": "changeset version",
     "g:release": "yarn g:build-release && changeset publish",
+    "clean:global-cache": "rimraf --no-glob ./dist ./coverage ./__data__ ./config/__data__ ./_release ./tsconfig.tsbuildinfo",
     "g:cz": "cz",
     "g:publish-local": "yarn changeset version && cd scripts && ./publish-to-verdaccio.sh",
     "prepare": "yarn husky"

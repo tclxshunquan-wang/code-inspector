@@ -1,4 +1,4 @@
-import { heroui, type ThemeColors } from '@heroui/react';
+import { heroui } from '@heroui/react';
 
 // hero.ts
 const hero = heroui({

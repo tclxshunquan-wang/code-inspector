@@ -1,5 +1,5 @@
 import React from 'react';
-import CardReview from './card-review';
+import { CardReview } from './card-review';
 import reviews from './reviews';
 
 export default function Component() {
