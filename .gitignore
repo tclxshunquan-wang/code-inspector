@@ -129,3 +129,11 @@ dist
 .pnp.*
 .netrc
 .swc
+
+
+# rust
+target/
+
+# misc
+.DS_Store
+*.pem

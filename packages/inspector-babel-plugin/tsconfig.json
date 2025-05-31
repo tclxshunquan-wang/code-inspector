@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "jsx": "preserve",
+    "allowJs": false,
+    "noImplicitAny": true,
+    "noEmit": false,
+    "incremental": true,
+    "paths": {
+      "@hyperse/inspector-common": ["../inspector-common/src/index.js"]
+    },
+    "types": ["vitest/globals", "node"]
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["**/node_modules", "**/.*/", "dist", "build"]
+}

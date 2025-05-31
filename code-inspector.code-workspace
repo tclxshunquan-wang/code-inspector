@@ -5,20 +5,32 @@
       "path": "website",
     },
     {
+      "name": "example-rspack",
+      "path": "examples/example-rspack",
+    },
+    {
+      "name": "example-webpack",
+      "path": "examples/example-webpack",
+    },
+    {
+      "name": "inspector-common",
+      "path": "packages/inspector-common",
+    },
+    {
+      "name": "inspector-babel-plugin",
+      "path": "packages/inspector-babel-plugin",
+    },
+    {
+      "name": "inspector-swc-plugin",
+      "path": "crates/inspector-swc-plugin",
+    },
+    {
+      "name": "inspector-middleware",
+      "path": "packages/inspector-middleware",
+    },
+    {
       "name": "inspector",
       "path": "packages/inspector",
-    },
-    {
-      "name": "inspector-vite",
-      "path": "packages/inspector-vite",
-    },
-    {
-      "name": "inspector-rspack",
-      "path": "packages/inspector-rspack",
-    },
-    {
-      "name": "inspector-webpack",
-      "path": "packages/inspector-webpack",
     },
     {
       "name": "root",
@@ -74,10 +86,13 @@
     // https://github.com/Microsoft/vscode-eslint#mono-repository-setup
     "eslint.workingDirectories": [
       "./website",
-      "./packages/inspector",
-      "./packages/inspector-vite",
-      "./packages/inspector-rspack",
-      "./packages/inspector-webpack"
+      "./examples/example-rspack",
+      "./examples/example-webpack",
+      "./crates/inspector-swc-plugin",
+      "./packages/inspector-common",
+      "./packages/inspector-babel-plugin",
+      "./packages/inspector-middleware",
+      "./packages/inspector"
     ],
     "typescript.tsdk": "root/node_modules/typescript/lib"
   },
