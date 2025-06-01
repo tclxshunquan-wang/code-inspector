@@ -1,7 +1,5 @@
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import TerserPlugin from 'terser-webpack-plugin';
 import { createLaunchEditorMiddleware } from '@hyperse/inspector-middleware';
 
@@ -58,12 +56,7 @@ const config = {
                 },
               ],
             ],
-            plugins: [
-              resolve(
-                fileURLToPath(import.meta.url),
-                '../../../packages/inspector-babel-plugin/dist/index.js'
-              ),
-            ],
+            plugins: ['@hyperse/inspector-babel-plugin'],
           },
         },
       },
