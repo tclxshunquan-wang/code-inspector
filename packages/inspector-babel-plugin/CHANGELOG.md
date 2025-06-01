@@ -1,5 +1,11 @@
 # @hyperse/inspector-webpack
 
+## 1.1.3
+
+### Patch Changes
+
+- [#8](https://github.com/hyperse-io/code-inspector/pull/8) [`2964d83`](https://github.com/hyperse-io/code-inspector/commit/2964d83b16865395a7116248c175dc6511c1682b) Thanks [@tclxshunquan-wang](https://github.com/tclxshunquan-wang)! - Support CJS references to babel-inspector-plugin
+
 ## 1.1.2
 
 ### Patch Changes

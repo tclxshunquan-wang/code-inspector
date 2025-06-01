@@ -1,5 +1,11 @@
 # @hyperse/inspector-swc-plugin
 
+## 1.1.4
+
+### Patch Changes
+
+- [#8](https://github.com/hyperse-io/code-inspector/pull/8) [`414393e`](https://github.com/hyperse-io/code-inspector/commit/414393e41af27cd4d94a1a8cb7adc515fcb650e3) Thanks [@tclxshunquan-wang](https://github.com/tclxshunquan-wang)! - publish inspector-swc-plugin
+
 ## 1.1.3
 
 ### Patch Changes
