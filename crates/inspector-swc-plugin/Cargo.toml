@@ -27,4 +27,5 @@ swc_ecma_utils     = { workspace = true }
 swc_ecma_visit     = { workspace = true }
 swc_plugin_macro   = { workspace = true }
 tracing            = { workspace = true, features = ["release_max_level_off"] }
+pathdiff           = { workspace = true }
 

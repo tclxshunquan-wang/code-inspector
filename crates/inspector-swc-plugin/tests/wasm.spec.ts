@@ -1,63 +1,77 @@
 import fs from 'node:fs/promises';
-import path, { resolve } from 'node:path';
-import url, { fileURLToPath } from 'node:url';
+import { join, relative } from 'node:path';
 import { test } from 'vitest';
-import { transform } from '@swc/core';
+import { getDirname } from './utils/getDirname.js';
+import { transformCode } from './utils/transformCode.js';
 
-const pluginName = 'inspector_swc_plugin.wasm';
-const pluginPath = path.join(
-  path.dirname(url.fileURLToPath(import.meta.url)),
-  '..',
-  'dist',
-  pluginName
-);
-const fileName = resolve(
-  fileURLToPath(import.meta.url),
-  '..',
-  'fixtures',
-  'react.tsx'
-);
+const projectCwd = getDirname(import.meta.url, 'fixtures');
+const filePath = join(projectCwd, 'react.tsx');
 
-const transformCode = async (code: string) => {
-  return transform(code, {
-    sourceMaps: true,
-    jsc: {
-      parser: {
-        syntax: 'typescript',
-        tsx: true,
-      },
-      transform: {
-        react: {
-          pragma: 'React.createElement',
-          pragmaFrag: 'React.Fragment',
-          throwIfNamespace: true,
-          development: false,
-          useBuiltins: true,
-        },
-      },
-      target: 'es2018',
-      experimental: {
-        plugins: [[pluginPath, {}]],
-      },
-    },
-    filename: fileName,
-  });
-};
-
-describe('wasm', () => {
-  test('Should load inspector wasm plugin correctly', async () => {
+describe('tests inspector swc plugin', () => {
+  test('default options. should return absolute path', async () => {
     const input = await fs.readFile(
       new URL('./fixtures/react.tsx', import.meta.url),
       'utf-8'
     );
-    const { code } = await transformCode(input);
+    const { code } = await transformCode(input, filePath);
 
-    // Verify that the transformation was successful
     expect(code).toBeDefined();
     expect(code).toContain('__hps_source');
     expect(code).toContain('fileName');
     expect(code).toContain('lineNumber');
     expect(code).toContain('columnNumber');
-    expect(code).toContain(`"${fileName}"`);
+    expect(code).toContain(`"${filePath}"`);
+  });
+
+  test('projectCwd is projectCwd. should return relative path of projectCwd', async () => {
+    const input = await fs.readFile(
+      new URL('./fixtures/react.tsx', import.meta.url),
+      'utf-8'
+    );
+    const { code } = await transformCode(input, filePath, {
+      projectCwd,
+    });
+
+    expect(code).toBeDefined();
+    expect(code).toContain('__hps_source');
+    expect(code).toContain('fileName');
+    expect(code).toContain('lineNumber');
+    expect(code).toContain('columnNumber');
+    expect(code).toContain(`"${relative(projectCwd, filePath)}"`);
+  });
+
+  test('projectCwd is process.cwd(). should return relative path of process.cwd()', async () => {
+    const input = await fs.readFile(
+      new URL('./fixtures/react.tsx', import.meta.url),
+      'utf-8'
+    );
+    const { code } = await transformCode(input, filePath, {
+      projectCwd: process.cwd(),
+      isAbsolutePath: false,
+    });
+
+    expect(code).toBeDefined();
+    expect(code).toContain('__hps_source');
+    expect(code).toContain('fileName');
+    expect(code).toContain('lineNumber');
+    expect(code).toContain('columnNumber');
+    expect(code).toContain(`"${relative(process.cwd(), filePath)}"`);
+  });
+
+  test('isAbsolutePath is true. should return absolute path', async () => {
+    const input = await fs.readFile(
+      new URL('./fixtures/react.tsx', import.meta.url),
+      'utf-8'
+    );
+    const { code } = await transformCode(input, filePath, {
+      isAbsolutePath: true,
+    });
+
+    expect(code).toBeDefined();
+    expect(code).toContain('__hps_source');
+    expect(code).toContain('fileName');
+    expect(code).toContain('lineNumber');
+    expect(code).toContain('columnNumber');
+    expect(code).toContain(`"${filePath}"`);
   });
 });

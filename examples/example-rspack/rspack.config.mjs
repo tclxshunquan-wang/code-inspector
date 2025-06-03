@@ -62,7 +62,14 @@ const config = {
             externalHelpers: true,
             experimental: {
               keepImportAttributes: true,
-              plugins: [['@hyperse/inspector-swc-plugin', {}]],
+              plugins: [
+                [
+                  '@hyperse/inspector-swc-plugin',
+                  {
+                    projectCwd: process.cwd(),
+                  },
+                ],
+              ],
             },
             transform: {
               decoratorMetadata: true,

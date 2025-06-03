@@ -56,7 +56,9 @@ const config = {
                 },
               ],
             ],
-            plugins: ['@hyperse/inspector-babel-plugin'],
+            plugins: [
+              ['@hyperse/inspector-babel-plugin', { isAbsolutePath: true }],
+            ],
           },
         },
       },
