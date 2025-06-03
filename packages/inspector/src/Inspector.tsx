@@ -17,11 +17,12 @@ export const Inspector = function <
     onActiveChange,
     inspectAgents = [domInspectAgent],
     disable = process.env.NODE_ENV !== 'development',
-    hideConsole = false,
+    hideConsole,
+    hideContext,
     children,
   } = props;
 
-  usePrintPromotion(hideConsole, keys);
+  usePrintPromotion(keys, hideConsole, hideContext);
 
   const { agentRef, contextPanelRef, startInspecting, onContextMenuEvent } =
     useStartInspecting(props, () => {

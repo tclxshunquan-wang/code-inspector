@@ -1,9 +1,13 @@
+import { relative } from 'path/posix';
 import { types as t } from '@babel/core';
 import { declare } from '@babel/helper-plugin-utils';
 import { TRACE_ID } from '@hyperse/inspector-common';
 import { FILE_NAME_VAR, PLUGIN_NAME } from './constant.js';
 import { formatTrace } from './helpers/format-trace.js';
 import type { PluginState } from './types/type-plugin.js';
+
+const isSourceAttr = (attr: t.Node) =>
+  t.isJSXAttribute(attr) && attr.name.name === TRACE_ID;
 
 /**
  * This adds {fileName, lineNumber, columnNumber} annotations to JSX tags.
@@ -19,9 +23,8 @@ import type { PluginState } from './types/type-plugin.js';
  * var __jsxFileName = 'this/file.js';
  * <sometag __hps_source={{fileName: __jsxFileName, lineNumber: 10, columnNumber: 1}}/>
  */
-export default declare<PluginState>(() => {
-  const isSourceAttr = (attr: t.Node) =>
-    t.isJSXAttribute(attr) && attr.name.name === TRACE_ID;
+export default declare<PluginState>((_, options) => {
+  const { projectCwd = process.cwd(), isAbsolutePath = false } = options;
 
   return {
     name: PLUGIN_NAME,
@@ -41,9 +44,14 @@ export default declare<PluginState>(() => {
           const fileNameId = path.scope.generateUidIdentifier(FILE_NAME_VAR);
           state.fileNameIdentifier = fileNameId;
 
+          let fileName = state.filename;
+          if (fileName && !isAbsolutePath) {
+            fileName = relative(projectCwd, fileName);
+          }
+
           path.scope.getProgramParent().push({
             id: fileNameId,
-            init: t.stringLiteral(state.filename || ''),
+            init: t.stringLiteral(fileName || ''),
           });
         }
 

@@ -59,6 +59,13 @@ export interface InspectorProps<
   hideConsole?: boolean;
 
   /**
+   * Whether to print the promotion message in the context of the page.
+   *
+   * @default `false`
+   */
+  hideContext?: boolean;
+
+  /**
    * Inspector Component toggle hotkeys,
    *
    * supported keys see: https://github.com/jaywcjlove/hotkeys#supported-keys

@@ -11,6 +11,11 @@ const trustedEditors = new Set(Object.values(TrustedEditor));
 
 type CreateLaunchEditorMiddlewareOptions = {
   /**
+   * The project cwd.
+   * @default process.cwd()
+   */
+  projectCwd?: string;
+  /**
    * The base path of the launch editor endpoint.
    * @default ''
    */
@@ -33,6 +38,7 @@ export const createLaunchEditorMiddleware: (
     res: Response,
     next: NextFunction
   ) => {
+    const projectCwd = options.projectCwd || process.cwd();
     const editorEndpoint = join(
       options.launchEditorEndpointBase || '',
       launchEditorEndpoint
@@ -55,7 +61,7 @@ export const createLaunchEditorMiddleware: (
       return;
     }
 
-    const fileName = resolve(process.cwd(), params.fileName);
+    const fileName = resolve(projectCwd, params.fileName);
 
     let filePathWithLines = fileName;
     if (params.lineNumber) {
