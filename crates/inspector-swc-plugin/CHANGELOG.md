@@ -1,5 +1,11 @@
 # @hyperse/inspector-swc-plugin
 
+## 1.1.5
+
+### Patch Changes
+
+- [#10](https://github.com/hyperse-io/code-inspector/pull/10) [`c2f24a5`](https://github.com/hyperse-io/code-inspector/commit/c2f24a59472dbbd3cf73b0068f621a845e6cb7be) Thanks [@tclxshunquan-wang](https://github.com/tclxshunquan-wang)! - The fileName returns the relative path by default
+
 ## 1.1.4
 
 ### Patch Changes
