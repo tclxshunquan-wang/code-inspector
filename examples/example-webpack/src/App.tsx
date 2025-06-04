@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Chip } from '@heroui/react';
 import { Inspector } from '@hyperse/inspector';
+import { launchEditorEndpoint } from '@hyperse/inspector-common';
 import Review from './review/App';
 import './index.css';
 
@@ -17,6 +18,7 @@ export const AppPage = () => {
         onHoverElement={(e) => {
           console.log(e);
         }}
+        customLaunchEditorEndpoint={`/pages${launchEditorEndpoint}`}
       />
       <Chip color="primary" variant="flat">
         Hyperse

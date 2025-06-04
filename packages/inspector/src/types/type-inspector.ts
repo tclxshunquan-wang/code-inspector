@@ -52,6 +52,13 @@ export interface InspectorProps<
     ElementInInspectAgents<InspectAgents> = ElementInInspectAgents<InspectAgents>,
 > {
   /**
+   * Custom launch editor endpoint.
+   *
+   * @default `/__inspect-open-in-editor`
+   */
+  customLaunchEditorEndpoint?: string;
+
+  /**
    * Whether to print the promotion message
    *
    * @default `false`

@@ -45,6 +45,7 @@ export const useStartInspecting = <
     ContextPanel = InspectContextPanel,
     disable = process.env.NODE_ENV !== 'development',
     inspectAgents = defaultInspectAgents,
+    customLaunchEditorEndpoint,
   } = props;
 
   const pointerRef = useRecordPointer({ disable });
@@ -70,6 +71,7 @@ export const useStartInspecting = <
     onClickElement,
     onInspectElement,
     onInterceptClick: ondDeactivate,
+    customLaunchEditorEndpoint,
   });
 
   const onContextMenuEvent = useEffectEvent(async (event: MouseEvent) => {
