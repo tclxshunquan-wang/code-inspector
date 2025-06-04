@@ -1,5 +1,12 @@
 # @example/example-webpack
 
+## 1.1.6
+
+### Patch Changes
+
+- Updated dependencies [[`b989096`](https://github.com/hyperse-io/code-inspector/commit/b989096fbf2142def1cd66243ef6f52e5718be94)]:
+  - @hyperse/inspector@1.1.4
+
 ## 1.1.5
 
 ### Patch Changes
