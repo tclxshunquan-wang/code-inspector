@@ -17,9 +17,15 @@ export const clickElementEvent = <
   onClickElement: InspectorProps<InspectAgents, Element>['onClickElement'];
   onInspectElement: InspectorProps<InspectAgents, Element>['onInspectElement'];
   onInterceptClick?: () => void;
+  customLaunchEditorEndpoint?: string;
 }) => {
-  const { agentRef, onInterceptClick, onClickElement, onInspectElement } =
-    options;
+  const {
+    agentRef,
+    onInterceptClick,
+    onClickElement,
+    onInspectElement,
+    customLaunchEditorEndpoint,
+  } = options;
 
   return useEffectEvent(
     ({
@@ -82,7 +88,7 @@ export const clickElementEvent = <
       }
 
       if (codeInfo && !onInspectElement) {
-        gotoServerEditor(codeInfo, { editor });
+        gotoServerEditor(codeInfo, { editor, customLaunchEditorEndpoint });
       }
     }
   );

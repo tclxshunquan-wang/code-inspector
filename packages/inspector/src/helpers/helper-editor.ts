@@ -18,6 +18,7 @@ export const gotoServerEditor = (
   _codeInfo?: CodeInfoLike,
   options?: {
     editor?: TrustedEditor;
+    customLaunchEditorEndpoint?: string;
   }
 ) => {
   if (!_codeInfo) return;
@@ -50,15 +51,18 @@ export const gotoServerEditor = (
     ][]
   );
 
+  const lastLaunchEditorEndpoint =
+    options?.customLaunchEditorEndpoint || launchEditorEndpoint;
+
   fetcher({
     /**
      * api path in {@link {import('@hyperse/inspector').createLaunchEditorMiddleware}}
      */
-    url: launchEditorEndpoint,
+    url: lastLaunchEditorEndpoint,
     params,
     fallbackUrl: isRelative
-      ? `${launchEditorEndpoint}/relative`
-      : launchEditorEndpoint,
+      ? `${lastLaunchEditorEndpoint}/relative`
+      : lastLaunchEditorEndpoint,
   });
 };
 

@@ -13,7 +13,11 @@ const config = {
       /**
        * @hyperse/inspector server config for webpack
        */
-      middlewares.unshift(createLaunchEditorMiddleware({}));
+      middlewares.unshift(
+        createLaunchEditorMiddleware({
+          launchEditorEndpointBase: '/pages',
+        })
+      );
       return middlewares;
     },
   },
