@@ -1,5 +1,14 @@
 # @hyperse/inspector-middleware
 
+## 1.1.4
+
+### Patch Changes
+
+- [#14](https://github.com/hyperse-io/code-inspector/pull/14) [`47f0dde`](https://github.com/hyperse-io/code-inspector/commit/47f0dde428b1d595f605021aa8a2dc0509e9e522) Thanks [@tclxshunquan-wang](https://github.com/tclxshunquan-wang)! - 1、update inspector plugin to use data-hps-source attribute for JSX elements.
+  2、remove isAbsolutePath option.
+- Updated dependencies [[`47f0dde`](https://github.com/hyperse-io/code-inspector/commit/47f0dde428b1d595f605021aa8a2dc0509e9e522)]:
+  - @hyperse/inspector-common@1.1.3
+
 ## 1.1.3
 
 ### Patch Changes
