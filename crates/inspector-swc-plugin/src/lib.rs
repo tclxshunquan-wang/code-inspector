@@ -14,18 +14,12 @@ use transform_source::InspectorPlugin;
 pub struct PluginConfig {
     #[serde(default)]
     pub project_cwd: Option<String>,
-    #[serde(default = "default_is_absolute_path")]
-    pub is_absolute_path: bool,
-}
-
-fn default_is_absolute_path() -> bool {
-    false
 }
 
 /// SWC plugin for code transform
 ///
 /// This plugin adds source location information to JSX elements
-/// by injecting a `__hps_source` attribute with file path,
+/// by injecting a `data-hps-source` attribute with file path,
 /// line number, and column number.
 #[plugin_transform]
 pub fn inspector_swc_plugin(program: Program, metadata: TransformPluginProgramMetadata) -> Program {
@@ -33,25 +27,17 @@ pub fn inspector_swc_plugin(program: Program, metadata: TransformPluginProgramMe
     let config: PluginConfig = metadata
         .get_transform_plugin_config()
         .and_then(|config_str| serde_json::from_str::<PluginConfig>(&config_str).ok())
-        .unwrap_or_else(|| PluginConfig {
-            project_cwd: None,
-            is_absolute_path: default_is_absolute_path(),
-        });
+        .unwrap_or_else(|| PluginConfig { project_cwd: None });
     // Get the absolute path of the file being processed
     let file_path = match metadata.get_context(&TransformPluginMetadataContextKind::Filename) {
         Some(ctx) => {
             let path = ctx.to_string();
-            if config.is_absolute_path {
-                path.clone()
+            if let Some(project_cwd) = config.project_cwd {
+                diff_paths(&path, &project_cwd)
+                    .map(|p| p.to_string_lossy().into_owned())
+                    .unwrap_or_else(|| path)
             } else {
-                if let Some(project_cwd) = config.project_cwd {
-                    diff_paths(&path, &project_cwd)
-                        .map(|p| p.to_string_lossy().into_owned())
-                        .unwrap_or_else(|| path)
-                } else {
-                    eprintln!("▶ Skipping: No project cwd available");
-                    path
-                }
+                path
             }
         }
         None => {

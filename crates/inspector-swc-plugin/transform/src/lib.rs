@@ -7,7 +7,7 @@ use swc_core::{
     },
 };
 
-const TRACE_ID: &str = "__hps_source";
+const TRACE_SOURCE: &str = "data-hps-source";
 
 pub struct InspectorPlugin {
     filename: String,
@@ -49,12 +49,12 @@ impl VisitMut for InspectorPlugin {
     fn visit_mut_jsx_opening_element(&mut self, el: &mut JSXOpeningElement) {
         let (line, col) = self.lookup(el.span.lo);
 
-        // Skip if element has no location info or already has __hps_source
+        // Skip if element has no location info or already has data-hps-source
         if el.span.is_dummy()
             || el.attrs.iter().any(|attr| {
                 if let JSXAttrOrSpread::JSXAttr(attr) = attr {
                     if let JSXAttrName::Ident(ident) = &attr.name {
-                        return ident.sym == TRACE_ID;
+                        return ident.sym == TRACE_SOURCE;
                     }
                 }
                 false
@@ -72,52 +72,31 @@ impl VisitMut for InspectorPlugin {
             ));
         }
 
-        // Create source location object
-        let source_loc = ObjectLit {
-            span: DUMMY_SP,
-            props: vec![
-                PropOrSpread::Prop(Box::new(Prop::KeyValue(KeyValueProp {
-                    key: PropName::Ident(
-                        Ident::new("fileName".into(), DUMMY_SP, SyntaxContext::empty()).into(),
-                    ),
-                    value: Box::new(Expr::Lit(Lit::Str(Str {
-                        span: DUMMY_SP,
-                        value: self.filename.clone().into(),
-                        raw: None,
-                    }))),
-                }))),
-                PropOrSpread::Prop(Box::new(Prop::KeyValue(KeyValueProp {
-                    key: PropName::Ident(
-                        Ident::new("lineNumber".into(), DUMMY_SP, SyntaxContext::empty()).into(),
-                    ),
-                    value: Box::new(Expr::Lit(Lit::Num(Number {
-                        span: DUMMY_SP,
-                        value: line as f64,
-                        raw: None,
-                    }))),
-                }))),
-                PropOrSpread::Prop(Box::new(Prop::KeyValue(KeyValueProp {
-                    key: PropName::Ident(
-                        Ident::new("columnNumber".into(), DUMMY_SP, SyntaxContext::empty()).into(),
-                    ),
-                    value: Box::new(Expr::Lit(Lit::Num(Number {
-                        span: DUMMY_SP,
-                        value: col as f64, // Convert to 1-based
-                        raw: None,
-                    }))),
-                }))),
-            ],
-        };
-
-        // Add __hps_source attribute
+        // Add data-hps-file-name attribute
         el.attrs.push(JSXAttrOrSpread::JSXAttr(JSXAttr {
             span: DUMMY_SP,
             name: JSXAttrName::Ident(
-                Ident::new(TRACE_ID.into(), DUMMY_SP, SyntaxContext::empty()).into(),
+                Ident::new(TRACE_SOURCE.into(), DUMMY_SP, SyntaxContext::empty()).into(),
             ),
             value: Some(JSXAttrValue::JSXExprContainer(JSXExprContainer {
                 span: DUMMY_SP,
-                expr: JSXExpr::Expr(Box::new(Expr::Object(source_loc))),
+                expr: JSXExpr::Expr(Box::new(Expr::Lit(Lit::Str(Str {
+                    span: DUMMY_SP,
+                    value: format!(
+                        "{}:{}:{}:{}",
+                        self.filename,
+                        line,
+                        col,
+                        match &el.name {
+                            JSXElementName::Ident(ident) => ident.sym.to_string(),
+                            JSXElementName::JSXMemberExpr(member) => member.prop.sym.to_string(),
+                            JSXElementName::JSXNamespacedName(namespaced) =>
+                                namespaced.name.sym.to_string(),
+                        }
+                    )
+                    .into(),
+                    raw: None,
+                })))),
             })),
         }));
 

@@ -1,5 +1,5 @@
 import { join, relative } from 'path/posix';
-import { TRACE_ID } from '@hyperse/inspector-common';
+import { TRACE_SOURCE } from '@hyperse/inspector-common';
 import inspectorBabelPlugin from '../src/index.js';
 import { babelCompile, getDirname } from './utils/index.js';
 
@@ -27,16 +27,9 @@ describe(`tests preset babel react, inject inspector source`, () => {
       ],
     })?.code;
 
-    const targetCode = `
-      ${TRACE_ID}: {
-      fileName: _jsxFileName2,
-      lineNumber: 5,
-      columnNumber: 11
-    },
-    `.trim();
-    expect(compiledCode?.trim()).toContain(targetCode);
+    expect(compiledCode?.trim()).toContain(`${TRACE_SOURCE}`);
     expect(compiledCode).toContain(
-      `_jsxFileName2 = "${relative(projectCwd, filePath)}"`
+      `${relative(projectCwd, filePath)}:5:11:div`
     );
   });
 
@@ -54,8 +47,9 @@ describe(`tests preset babel react, inject inspector source`, () => {
       ],
     })?.code;
 
+    expect(compiledCode?.trim()).toContain(`${TRACE_SOURCE}`);
     expect(compiledCode).toContain(
-      `_jsxFileName2 = "${relative(process.cwd(), filePath)}"`
+      `${relative(process.cwd(), filePath)}:5:11:div`
     );
   });
 
@@ -63,9 +57,10 @@ describe(`tests preset babel react, inject inspector source`, () => {
     const filePath = join(projectCwd, './react.tsx');
 
     const compiledCode = babelCompile(filePath, {
-      plugins: [[inspectorBabelPlugin, { isAbsolutePath: true }]],
+      plugins: [[inspectorBabelPlugin, {}]],
     })?.code;
 
-    expect(compiledCode).toContain(`_jsxFileName2 = "${filePath}"`);
+    expect(compiledCode?.trim()).toContain(`${TRACE_SOURCE}`);
+    expect(compiledCode).toContain(`${filePath}:5:11:div`);
   });
 });

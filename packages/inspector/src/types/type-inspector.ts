@@ -73,6 +73,13 @@ export interface InspectorProps<
   hideContext?: boolean;
 
   /**
+   * Whether to hide the dom path attribute
+   *
+   * @default `true`
+   */
+  hideDomPathAttr?: boolean;
+
+  /**
    * Inspector Component toggle hotkeys,
    *
    * supported keys see: https://github.com/jaywcjlove/hotkeys#supported-keys

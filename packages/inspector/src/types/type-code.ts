@@ -1,5 +1,11 @@
 export interface CodeInfo {
+  /**
+   * code source file line number
+   */
   lineNumber: string;
+  /**
+   * code source file column number
+   */
   columnNumber: string;
   /**
    * code source file relative path to dev-server cwd(current working directory)
@@ -11,16 +17,4 @@ export interface CodeInfo {
    * just need use with `@hyperse/inspector-babel-plugin` which auto set by most framework
    */
   absolutePath?: string;
-}
-
-/**
- * props that injected into react nodes
- *
- * like <div __hps_source={{fileName: /usr/workspace/inspector-demo/src/index.js, lineNumber: 10, columnNumber: 1}}/>
- * this props will be record in fiber
- */
-export interface CodeDataAttribute {
-  fileName: string;
-  lineNumber: number;
-  columnNumber?: number;
 }

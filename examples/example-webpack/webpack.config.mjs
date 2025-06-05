@@ -1,9 +1,19 @@
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { resolve } from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
+import { fileURLToPath } from 'url';
+import webpack from 'webpack';
+import { launchEditorEndpoint } from '@hyperse/inspector-common';
 import { createLaunchEditorMiddleware } from '@hyperse/inspector-middleware';
 
 const isDev = process.env.NODE_ENV === 'development';
+
+const inspectorPackage = fileURLToPath(import.meta.url);
+const inspectorClientEntry = resolve(
+  inspectorPackage,
+  '../../../packages/inspector/dist/client/index.js'
+);
 
 const config = {
   context: process.cwd(),
@@ -22,7 +32,7 @@ const config = {
     },
   },
   entry: {
-    main: './src/main.tsx',
+    main: ['./src/main.tsx', inspectorClientEntry],
   },
   output: {
     filename: '[name].[hash].js',
@@ -61,7 +71,10 @@ const config = {
               ],
             ],
             plugins: [
-              ['@hyperse/inspector-babel-plugin', { isAbsolutePath: true }],
+              [
+                '@hyperse/inspector-babel-plugin',
+                { projectCwd: process.cwd() },
+              ],
             ],
           },
         },
@@ -79,6 +92,11 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.INSPECTOR_ENDPOINT': JSON.stringify(
+        `/pages${launchEditorEndpoint}`
+      ),
     }),
   ],
 };
