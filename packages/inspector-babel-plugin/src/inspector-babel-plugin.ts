@@ -1,13 +1,12 @@
 import { relative } from 'path/posix';
 import { types as t } from '@babel/core';
 import { declare } from '@babel/helper-plugin-utils';
-import { TRACE_ID } from '@hyperse/inspector-common';
-import { FILE_NAME_VAR, PLUGIN_NAME } from './constant.js';
-import { formatTrace } from './helpers/format-trace.js';
+import { TRACE_SOURCE } from '@hyperse/inspector-common';
+import { PLUGIN_NAME } from './constant.js';
 import type { PluginState } from './types/type-plugin.js';
 
 const isSourceAttr = (attr: t.Node) =>
-  t.isJSXAttribute(attr) && attr.name.name === TRACE_ID;
+  t.isJSXAttribute(attr) && attr.name.name === TRACE_SOURCE;
 
 /**
  * This adds {fileName, lineNumber, columnNumber} annotations to JSX tags.
@@ -20,11 +19,11 @@ const isSourceAttr = (attr: t.Node) =>
  *
  * becomes:
  *
- * var __jsxFileName = 'this/file.js';
- * <sometag __hps_source={{fileName: __jsxFileName, lineNumber: 10, columnNumber: 1}}/>
+ * var __jsxFileName = 'project/file.js';
+ * <sometag data-hps-source="project/file.js:10:1:sometag"/>
  */
 export default declare<PluginState>((_, options) => {
-  const { projectCwd = process.cwd(), isAbsolutePath = false } = options;
+  const { projectCwd } = options;
 
   return {
     name: PLUGIN_NAME,
@@ -34,37 +33,33 @@ export default declare<PluginState>((_, options) => {
         if (
           // the element was generated and doesn't have location information
           !node.loc ||
-          // Already has __source
+          // Already has data-hps-source
           path.node.attributes.some(isSourceAttr)
         ) {
           return;
         }
 
-        if (!state.fileNameIdentifier) {
-          const fileNameId = path.scope.generateUidIdentifier(FILE_NAME_VAR);
-          state.fileNameIdentifier = fileNameId;
+        const { line, column } = node.loc.start;
+        const lineNumber = line;
+        const columnNumber = column + 1;
+        let fileName = state.filename;
 
-          let fileName = state.filename;
-          if (fileName && !isAbsolutePath) {
-            fileName = relative(projectCwd, fileName);
-          }
-
-          path.scope.getProgramParent().push({
-            id: fileNameId,
-            init: t.stringLiteral(fileName || ''),
-          });
+        if (fileName && projectCwd) {
+          fileName = relative(projectCwd, fileName);
         }
 
-        const attributeName = t.jsxIdentifier(TRACE_ID);
-
-        const attributeValue = t.jsxExpressionContainer(
-          formatTrace(
-            t.cloneNode<t.Identifier>(state.fileNameIdentifier as t.Identifier),
-            node.loc.start
+        node.attributes.push(
+          t.jsxAttribute(
+            t.jsxIdentifier(TRACE_SOURCE),
+            t.jsxExpressionContainer(
+              t.stringLiteral(
+                `${fileName}:${lineNumber}:${columnNumber}:${
+                  (node.name as t.JSXIdentifier).name
+                }`
+              )
+            )
           )
         );
-
-        node.attributes.push(t.jsxAttribute(attributeName, attributeValue));
       },
     },
   };

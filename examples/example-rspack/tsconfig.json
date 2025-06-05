@@ -10,7 +10,10 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noEmit": false,
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@hyperse/inspector": ["../../packages/inspector/src/index.js"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx", "rspack.config.mjs"],
   "exclude": ["**/node_modules", "**/.*/", "dist", "build"]

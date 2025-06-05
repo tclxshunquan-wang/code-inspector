@@ -125,7 +125,7 @@ describe('createLaunchEditorMiddleware', () => {
 
   it('should use specified editor from options', () => {
     const customMiddleware = createLaunchEditorMiddleware({
-      launchEditor: TrustedEditor.VSCode,
+      trustedEditor: TrustedEditor.VSCode,
     });
 
     mockReq.url = join('/', launchEditorEndpoint, '?fileName=test.js');

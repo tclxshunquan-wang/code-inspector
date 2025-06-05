@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { type DOMElement, domInspectAgent } from './agent/dom-inspect-agent.js';
 import { useControlledActive, useHotkeyToggle } from './hooks/index.js';
+import { useHideDomAttributes } from './hooks/use-hide-dom-attributes.js';
 import { usePrintPromotion } from './hooks/use-print-promotion.js';
 import { useStartInspecting } from './hooks/use-start-inspecting.js';
 import { useStopInspecting } from './hooks/use-stop-inspecting.js';
@@ -19,6 +20,7 @@ export const Inspector = function <
     disable = process.env.NODE_ENV !== 'development',
     hideConsole,
     hideContext,
+    hideDomPathAttr,
     children,
   } = props;
 
@@ -60,6 +62,8 @@ export const Inspector = function <
     deactivate,
     activate,
   });
+
+  useHideDomAttributes(hideDomPathAttr);
 
   return <>{children ?? null}</>;
 };

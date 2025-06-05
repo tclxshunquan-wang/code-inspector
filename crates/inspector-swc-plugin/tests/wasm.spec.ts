@@ -16,11 +16,8 @@ describe('tests inspector swc plugin', () => {
     const { code } = await transformCode(input, filePath);
 
     expect(code).toBeDefined();
-    expect(code).toContain('__hps_source');
-    expect(code).toContain('fileName');
-    expect(code).toContain('lineNumber');
-    expect(code).toContain('columnNumber');
-    expect(code).toContain(`"${filePath}"`);
+    expect(code).toContain('data-hps-source');
+    expect(code).toContain(`${filePath}`);
   });
 
   test('projectCwd is projectCwd. should return relative path of projectCwd', async () => {
@@ -33,11 +30,8 @@ describe('tests inspector swc plugin', () => {
     });
 
     expect(code).toBeDefined();
-    expect(code).toContain('__hps_source');
-    expect(code).toContain('fileName');
-    expect(code).toContain('lineNumber');
-    expect(code).toContain('columnNumber');
-    expect(code).toContain(`"${relative(projectCwd, filePath)}"`);
+    expect(code).toContain('data-hps-source');
+    expect(code).toContain(`${relative(projectCwd, filePath)}`);
   });
 
   test('projectCwd is process.cwd(). should return relative path of process.cwd()', async () => {
@@ -47,15 +41,11 @@ describe('tests inspector swc plugin', () => {
     );
     const { code } = await transformCode(input, filePath, {
       projectCwd: process.cwd(),
-      isAbsolutePath: false,
     });
 
     expect(code).toBeDefined();
-    expect(code).toContain('__hps_source');
-    expect(code).toContain('fileName');
-    expect(code).toContain('lineNumber');
-    expect(code).toContain('columnNumber');
-    expect(code).toContain(`"${relative(process.cwd(), filePath)}"`);
+    expect(code).toContain('data-hps-source');
+    expect(code).toContain(`${relative(process.cwd(), filePath)}`);
   });
 
   test('isAbsolutePath is true. should return absolute path', async () => {
@@ -63,15 +53,10 @@ describe('tests inspector swc plugin', () => {
       new URL('./fixtures/react.tsx', import.meta.url),
       'utf-8'
     );
-    const { code } = await transformCode(input, filePath, {
-      isAbsolutePath: true,
-    });
+    const { code } = await transformCode(input, filePath, {});
 
     expect(code).toBeDefined();
-    expect(code).toContain('__hps_source');
-    expect(code).toContain('fileName');
-    expect(code).toContain('lineNumber');
-    expect(code).toContain('columnNumber');
-    expect(code).toContain(`"${filePath}"`);
+    expect(code).toContain('data-hps-source');
+    expect(code).toContain(`${filePath}`);
   });
 });

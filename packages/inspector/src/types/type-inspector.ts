@@ -54,7 +54,7 @@ export interface InspectorProps<
   /**
    * Custom launch editor endpoint.
    *
-   * @default `/__inspect-open-in-editor`
+   * @default `/__hps_inspector`
    */
   customLaunchEditorEndpoint?: string;
 
@@ -71,6 +71,13 @@ export interface InspectorProps<
    * @default `false`
    */
   hideContext?: boolean;
+
+  /**
+   * Whether to hide the dom path attribute
+   *
+   * @default `true`
+   */
+  hideDomPathAttr?: boolean;
 
   /**
    * Inspector Component toggle hotkeys,

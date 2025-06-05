@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Chip } from '@heroui/react';
+import { Button, Chip } from '@heroui/react';
 import { Inspector } from '@hyperse/inspector';
 import Review from './review/App';
 import './index.css';
@@ -17,6 +17,7 @@ export const AppPage = () => {
           console.log(e);
         }}
       />
+      <Button>Hyperse</Button>
       <Chip color="primary" variant="flat">
         Hyperse
       </Chip>

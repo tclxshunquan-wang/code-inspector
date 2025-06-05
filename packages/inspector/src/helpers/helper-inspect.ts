@@ -1,8 +1,8 @@
 import type { Fiber, Source } from 'react-reconciler';
-import { TRACE_ID } from '@hyperse/inspector-common';
+import { TRACE_SOURCE } from '@hyperse/inspector-common';
 import type { TagItem } from '@react-dev-inspector/web-components';
 import type { InspectAgent, InspectChainItem } from '../types/type-agent.js';
-import type { CodeDataAttribute, CodeInfo } from '../types/type-code.js';
+import type { CodeInfo } from '../types/type-code.js';
 import {
   getDirectParentFiber,
   getDisplayNameForFiber,
@@ -68,13 +68,13 @@ export const getCodeInfoFromDebugSource = (
  * code location data-attribute props inject by `@hyperse/inspector-babel-plugin`
  */
 export const getCodeInfoFromProps = (fiber?: Fiber): CodeInfo | undefined => {
-  if (!fiber?.pendingProps?.[TRACE_ID]) return undefined;
+  if (!fiber?.pendingProps?.[TRACE_SOURCE]) {
+    return undefined;
+  }
 
-  const { fileName, lineNumber, columnNumber } = fiber.pendingProps[
-    TRACE_ID
-  ] as CodeDataAttribute;
-
-  if (lineNumber && columnNumber && fileName) {
+  const traceSource = fiber.pendingProps[TRACE_SOURCE];
+  const [fileName, lineNumber, columnNumber] = traceSource.split(':');
+  if (fileName && lineNumber && columnNumber) {
     return {
       lineNumber: String(lineNumber),
       columnNumber: String(columnNumber ?? 1),

@@ -9,7 +9,7 @@ import {
 
 const trustedEditors = new Set(Object.values(TrustedEditor));
 
-type CreateLaunchEditorMiddlewareOptions = {
+export type CreateLaunchEditorMiddlewareOptions = {
   /**
    * The project cwd.
    * @default process.cwd()
@@ -24,25 +24,26 @@ type CreateLaunchEditorMiddlewareOptions = {
    * The trusted editors that can be launched from browser.
    * @default undefined
    */
-  launchEditor?: TrustedEditor;
+  trustedEditor?: TrustedEditor;
 };
 
 /**
  * Create a middleware to launch editor(IDE) from browser.
  */
 export const createLaunchEditorMiddleware: (
-  options: CreateLaunchEditorMiddlewareOptions
-) => RequestHandler = (options) => {
+  options?: CreateLaunchEditorMiddlewareOptions
+) => RequestHandler = (options = {}) => {
   const launchEditorMiddleware: RequestHandler = (
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
-    const projectCwd = options.projectCwd || process.cwd();
-    const editorEndpoint = join(
-      options.launchEditorEndpointBase || '',
-      launchEditorEndpoint
-    );
+    const {
+      projectCwd = process.cwd(),
+      launchEditorEndpointBase = '',
+      trustedEditor = process.env.LAUNCH_EDITOR,
+    } = options;
+    const editorEndpoint = join(launchEditorEndpointBase, launchEditorEndpoint);
 
     if (!req.url?.startsWith(editorEndpoint)) {
       return next();
@@ -79,9 +80,7 @@ export const createLaunchEditorMiddleware: (
       return;
     }
 
-    const editor = params.editor
-      ? params.editor
-      : options.launchEditor || process.env.LAUNCH_EDITOR;
+    const editor = params.editor ? params.editor : trustedEditor;
 
     launchEditor(filePathWithLines, editor);
 
