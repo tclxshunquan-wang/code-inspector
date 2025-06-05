@@ -54,7 +54,7 @@ export interface InspectorProps<
   /**
    * Custom launch editor endpoint.
    *
-   * @default `/__inspect-open-in-editor`
+   * @default `/__hps_inspector`
    */
   customLaunchEditorEndpoint?: string;
 
