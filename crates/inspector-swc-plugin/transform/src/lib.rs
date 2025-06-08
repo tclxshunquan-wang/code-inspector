@@ -1,6 +1,8 @@
-use std::fmt;
+mod utils;
+
+use crate::utils::get_file_info;
 use swc_core::{
-    common::{BytePos, SyntaxContext, DUMMY_SP},
+    common::{SyntaxContext, DUMMY_SP},
     ecma::{
         ast::*,
         visit::{VisitMut, VisitMutWith},
@@ -10,44 +12,29 @@ use swc_core::{
 const TRACE_SOURCE: &str = "data-hps-source";
 
 pub struct InspectorPlugin {
-    filename: String,
+    #[allow(dead_code)]
+    project_cwd: Option<String>,
     file_name_identifier: Option<Ident>,
     source_map: swc_core::plugin::proxies::PluginSourceMapProxy,
 }
 
-impl fmt::Debug for InspectorPlugin {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.debug_struct("InspectorPlugin")
-            .field("filename", &self.filename)
-            .field(
-                "file_name_identifier",
-                &self.file_name_identifier.as_ref().map(|id| &id.sym),
-            )
-            .finish()
-    }
-}
-
 impl InspectorPlugin {
     pub fn new(
-        filename: String,
+        project_cwd: Option<String>,
         source_map: swc_core::plugin::proxies::PluginSourceMapProxy,
     ) -> Self {
         Self {
-            filename,
+            project_cwd,
             file_name_identifier: None,
             source_map,
         }
-    }
-
-    fn lookup(&self, pos: BytePos) -> (u32, u32) {
-        let loc = self.source_map.get_code_map().lookup_char_pos(pos);
-        (loc.line as u32, (loc.col_display + 1) as u32)
     }
 }
 
 impl VisitMut for InspectorPlugin {
     fn visit_mut_jsx_opening_element(&mut self, el: &mut JSXOpeningElement) {
-        let (line, col) = self.lookup(el.span.lo);
+        let (line, col, filename) =
+            get_file_info(self.project_cwd.clone(), &self.source_map, el.span.lo);
 
         // Skip if element has no location info or already has data-hps-source
         if el.span.is_dummy()
@@ -66,7 +53,7 @@ impl VisitMut for InspectorPlugin {
         // Create file name identifier if not exists
         if self.file_name_identifier.is_none() {
             self.file_name_identifier = Some(Ident::new(
-                self.filename.clone().into(),
+                filename.clone().into(),
                 DUMMY_SP,
                 SyntaxContext::empty(),
             ));
@@ -84,7 +71,7 @@ impl VisitMut for InspectorPlugin {
                     span: DUMMY_SP,
                     value: format!(
                         "{}:{}:{}:{}",
-                        self.filename,
+                        filename.clone(),
                         line,
                         col,
                         match &el.name {
@@ -104,6 +91,9 @@ impl VisitMut for InspectorPlugin {
     }
 
     fn visit_mut_module(&mut self, module: &mut Module) {
+        let (_, _, filename) =
+            get_file_info(self.project_cwd.clone(), &self.source_map, module.span.lo);
+
         // Add file name variable declaration at the start of the module
         if let Some(file_name_id) = &self.file_name_identifier {
             module.body.insert(
@@ -120,7 +110,7 @@ impl VisitMut for InspectorPlugin {
                         }),
                         init: Some(Box::new(Expr::Lit(Lit::Str(Str {
                             span: DUMMY_SP,
-                            value: self.filename.clone().into(),
+                            value: filename.clone().into(),
                             raw: None,
                         })))),
                         definite: false,
