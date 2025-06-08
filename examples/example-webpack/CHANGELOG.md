@@ -1,5 +1,12 @@
 # @example/example-webpack
 
+## 1.1.8
+
+### Patch Changes
+
+- Updated dependencies [[`251ca23`](https://github.com/hyperse-io/code-inspector/commit/251ca234a86be683da5c356aee53e6279866f1f7)]:
+  - @hyperse/inspector-swc-plugin@1.1.7
+
 ## 1.1.7
 
 ### Patch Changes

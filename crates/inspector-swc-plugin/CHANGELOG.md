@@ -1,5 +1,11 @@
 # @hyperse/inspector-swc-plugin
 
+## 1.1.7
+
+### Patch Changes
+
+- [#17](https://github.com/hyperse-io/code-inspector/pull/17) [`251ca23`](https://github.com/hyperse-io/code-inspector/commit/251ca234a86be683da5c356aee53e6279866f1f7) Thanks [@tclxshunquan-wang](https://github.com/tclxshunquan-wang)! - support nextjs
+
 ## 1.1.6
 
 ### Patch Changes
