@@ -59,4 +59,22 @@ describe('tests inspector swc plugin', () => {
     expect(code).toContain('data-hps-source');
     expect(code).toContain(`${filePath}`);
   });
+
+  test('isAbsolutePath is true. should return absolute path. support nextjs', async () => {
+    const input = await fs.readFile(
+      new URL('./fixtures/react.tsx', import.meta.url),
+      'utf-8'
+    );
+
+    const fileName =
+      '[project]/apps/main/src/app/[locale]/(account)/account/widgets/AccountView.tsx';
+
+    const { code } = await transformCode(input, fileName, {
+      projectCwd: process.cwd(),
+    });
+
+    expect(code).toBeDefined();
+    expect(code).toContain('data-hps-source');
+    expect(code).toContain(fileName.replace('[project]/', ''));
+  });
 });
