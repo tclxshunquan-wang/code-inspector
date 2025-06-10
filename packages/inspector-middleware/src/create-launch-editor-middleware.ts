@@ -1,6 +1,6 @@
 import type { NextFunction, Request, RequestHandler, Response } from 'express';
 import launchEditor from 'launch-editor';
-import { join, resolve } from 'node:path';
+import { resolve } from 'node:path';
 import { launchEditorEndpoint } from '@hyperse/inspector-common';
 import {
   type LaunchEditorParams,
@@ -16,10 +16,10 @@ export type CreateLaunchEditorMiddlewareOptions = {
    */
   projectCwd?: string;
   /**
-   * The base path of the launch editor endpoint.
-   * @default ''
+   * Custom launch editor endpoint.
+   * @default '/__hps_inspector'
    */
-  launchEditorEndpointBase?: string;
+  customLaunchEditorEndpoint?: string;
   /**
    * The trusted editors that can be launched from browser.
    * @default undefined
@@ -40,12 +40,11 @@ export const createLaunchEditorMiddleware: (
   ) => {
     const {
       projectCwd = process.cwd(),
-      launchEditorEndpointBase = '',
+      customLaunchEditorEndpoint = launchEditorEndpoint,
       trustedEditor = process.env.LAUNCH_EDITOR,
     } = options;
-    const editorEndpoint = join(launchEditorEndpointBase, launchEditorEndpoint);
 
-    if (!req.url?.startsWith(editorEndpoint)) {
+    if (!req.url?.startsWith(customLaunchEditorEndpoint)) {
       return next();
     }
 
