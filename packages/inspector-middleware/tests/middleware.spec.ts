@@ -111,11 +111,10 @@ describe('createLaunchEditorMiddleware', () => {
 
   it('should use custom base path if provided', () => {
     const customMiddleware = createLaunchEditorMiddleware({
-      launchEditorEndpointBase: '/custom',
+      customLaunchEditorEndpoint: '/custom',
     });
 
-    mockReq.url =
-      '/custom' + join('/', launchEditorEndpoint, '?fileName=test.js');
+    mockReq.url = '/custom?fileName=test.js';
 
     customMiddleware(mockReq, mockRes, mockNext);
 
