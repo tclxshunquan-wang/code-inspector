@@ -1,5 +1,12 @@
 # @example/example-rspack
 
+## 1.1.9
+
+### Patch Changes
+
+- Updated dependencies [[`bba9add`](https://github.com/hyperse-io/code-inspector/commit/bba9addff1796318a79f6e1cce6af15146e2414a)]:
+  - @hyperse/inspector@1.1.6
+
 ## 1.1.8
 
 ### Patch Changes
