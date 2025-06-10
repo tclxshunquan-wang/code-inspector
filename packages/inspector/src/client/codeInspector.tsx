@@ -13,6 +13,7 @@ function injectInspectorComponent() {
           hideDomPathAttr
           disable={false}
           customLaunchEditorEndpoint={process.env.INSPECTOR_ENDPOINT}
+          keys={process.env.INSPECTOR_KEYS?.split(',')}
         />
       );
     });
