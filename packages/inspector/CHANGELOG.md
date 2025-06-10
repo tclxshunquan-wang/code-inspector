@@ -1,5 +1,11 @@
 # @hyperse/inspector
 
+## 1.1.6
+
+### Patch Changes
+
+- [#19](https://github.com/hyperse-io/code-inspector/pull/19) [`bba9add`](https://github.com/hyperse-io/code-inspector/commit/bba9addff1796318a79f6e1cce6af15146e2414a) Thanks [@tclxshunquan-wang](https://github.com/tclxshunquan-wang)! - support process.env.INSPECTOR_KEYS
+
 ## 1.1.5
 
 ### Patch Changes
