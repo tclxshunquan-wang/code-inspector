@@ -1,5 +1,11 @@
 # @hyperse/inspector-middleware
 
+## 1.1.5
+
+### Patch Changes
+
+- [#21](https://github.com/hyperse-io/code-inspector/pull/21) [`63baead`](https://github.com/hyperse-io/code-inspector/commit/63baead3d2cefdf167a5ee874ad1f0cbb92446d6) Thanks [@tclxshunquan-wang](https://github.com/tclxshunquan-wang)! - refactor customLaunchEditorEndpoint
+
 ## 1.1.4
 
 ### Patch Changes
