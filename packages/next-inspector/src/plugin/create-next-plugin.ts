@@ -16,7 +16,7 @@ const mergeConfig = (config: NextConfig = {}): NextConfig => {
   return finalConfig;
 };
 
-export default function createNextIntlPlugin(
+export default function createNextInspectorPlugin(
   pluginOptions: PluginOptions = {}
 ) {
   return function withNextInspector(nextConfig?: NextConfig) {
