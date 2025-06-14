@@ -45,10 +45,9 @@ const handler = async (request: NextRequest) => {
     );
   }
 
-  const { root } = getPackagesSync(projectCwd);
-  const rootProjectCwd = root.dir;
+  const { rootDir } = getPackagesSync(projectCwd);
 
-  const fileName = resolve(rootProjectCwd, params.fileName);
+  const fileName = resolve(rootDir, params.fileName);
 
   let filePathWithLines = fileName;
   if (params.lineNumber) {
