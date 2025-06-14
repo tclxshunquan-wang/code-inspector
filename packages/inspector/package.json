@@ -62,8 +62,8 @@
   },
   "dependencies": {
     "@hyperse/inspector-common": "workspace:*",
+    "@hyperse/inspector-component": "workspace:*",
     "@hyperse/tinykeys": "^1.0.1",
-    "@react-dev-inspector/web-components": "^2.1.0-beta.7",
     "@types/react-reconciler": "^0.32.0"
   },
   "peerDependencies": {

@@ -2,14 +2,14 @@ import type { ReactNode } from 'react';
 import type { Fiber } from 'react-reconciler';
 import type { TrustedEditor } from '@hyperse/inspector-common';
 import type {
-  ElementItemInfo,
+  ElementItem,
   InspectContextPanel,
-} from '@react-dev-inspector/web-components';
+} from '@hyperse/inspector-component';
 import type { DOMElement } from '../agent/dom-inspect-agent.js';
 import type { InspectAgent } from './type-agent.js';
 import type { CodeInfo } from './type-code.js';
 
-export interface InspectElementItem<Element = any> extends ElementItemInfo {
+export interface InspectElementItem<Element = any> extends ElementItem {
   agent: InspectAgent<Element>;
   element?: Element | null;
 }

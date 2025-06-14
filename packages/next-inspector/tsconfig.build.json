@@ -7,7 +7,12 @@
     "moduleResolution": "nodenext",
     "paths": {}
   },
-  "include": ["./src/index.ts", "./src/plugin/index.ts"],
+  "include": [
+    "./src/index.ts",
+    "./src/api/index.ts",
+    "./src/plugin/index.ts",
+    "./src/client/index.ts"
+  ],
   "exclude": [
     "**/*.stories.tsx",
     "**/*.stories.mdx",

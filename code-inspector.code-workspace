@@ -37,6 +37,10 @@
       "path": "packages/next-inspector",
     },
     {
+      "name": "inspector-component",
+      "path": "packages/inspector-component",
+    },
+    {
       "name": "inspector",
       "path": "packages/inspector",
     },
@@ -102,7 +106,8 @@
       "./packages/inspector-babel-plugin",
       "./packages/inspector-middleware",
       "./packages/next-inspector",
-      "./packages/inspector"
+      "./packages/inspector",
+      "./packages/inspector-component",
     ],
     "typescript.tsdk": "root/node_modules/typescript/lib"
   },

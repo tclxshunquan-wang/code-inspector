@@ -1,1 +1,1 @@
-# @hyperse/inspector-common
+# @hyperse/next-inspector

@@ -25,7 +25,7 @@ const config = {
        */
       middlewares.unshift(
         createLaunchEditorMiddleware({
-          launchEditorEndpointBase: '/pages',
+          customLaunchEditorEndpoint: `/pages${launchEditorEndpoint}`,
         })
       );
       return middlewares;
@@ -97,6 +97,11 @@ const config = {
       'process.env.INSPECTOR_ENDPOINT': JSON.stringify(
         `/pages${launchEditorEndpoint}`
       ),
+      'process.env.INSPECTOR_KEYS': JSON.stringify(['$mod', 'i'].join(',')),
+      'process.env.INSPECTOR_HIDE_CONSOLE': JSON.stringify('FALSE'),
+      'process.env.INSPECTOR_HIDE_CONTEXT': JSON.stringify('FALSE'),
+      'process.env.INSPECTOR_HIDE_DOM_PATH_ATTR': JSON.stringify('FALSE'),
+      'process.env.INSPECTOR_DISABLE': JSON.stringify('FALSE'),
     }),
   ],
 };

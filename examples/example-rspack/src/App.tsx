@@ -22,6 +22,9 @@ export const AppPage = () => {
         Hyperse
       </Chip>
       <span className="text-2xl font-bold">Hyperse Code Inspector</span>
+
+      <Button>Hyperse</Button>
+      <span className="text-2xl font-bold">Hyperse Code Inspector</span>
       <Review />
     </div>
   );

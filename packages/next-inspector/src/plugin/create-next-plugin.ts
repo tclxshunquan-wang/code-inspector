@@ -1,12 +1,27 @@
 import type { NextConfig } from 'next';
+import { mergeOptions } from '@hyperse/config-loader';
+import { createApiRoute } from '../api/create-api-route.js';
 import type { PluginOptions } from '../types/type-plugin-options.js';
-import { transformNextConfig } from './transform-next-config.js';
+import { rewriteInspectorConfig } from './rewrite-inspector-config.js';
+
+const mergeConfig = (config: NextConfig = {}): NextConfig => {
+  const nextConfig = mergeOptions({}, config);
+
+  const finalConfig = mergeOptions(nextConfig, {
+    experimental: {
+      swcPlugins: [['@hyperse/inspector-swc-plugin', {}]],
+    },
+  });
+
+  return finalConfig;
+};
 
 export default function createNextIntlPlugin(
   pluginOptions: PluginOptions = {}
 ) {
-  const config = pluginOptions;
   return function withNextInspector(nextConfig?: NextConfig) {
-    return transformNextConfig(config, nextConfig);
+    createApiRoute(pluginOptions);
+    rewriteInspectorConfig(pluginOptions);
+    return mergeConfig(nextConfig);
   };
 }

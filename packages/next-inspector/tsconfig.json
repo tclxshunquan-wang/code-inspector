@@ -2,12 +2,21 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": "",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmit": false,
     "incremental": true,
-    "paths": {},
+    "paths": {
+      "@hyperse/inspector-common": ["../inspector-common/src/index.js"],
+      "@hyperse/inspector-component": ["../inspector-component/src/index.js"],
+      "@hyperse/inspector-swc-plugin": ["../inspector-swc-plugin/src/index.js"],
+      "@hyperse/inspector": ["../inspector/src/index.js"],
+      "@hyperse/next-inspector/config": [
+        "./src/plugin/plugin-inspector-config.js"
+      ],
+      "@hyperse/next-inspector/api": ["./src/api/index.js"]
+    },
     "types": ["vitest/globals"]
   },
   "include": ["**/*.ts", "**/*.tsx"],
