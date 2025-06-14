@@ -35,6 +35,7 @@
     - [Webpack](#webpack)
     - [Vite](#vite)
     - [Rspack](#rspack)
+    - [Next.js](#nextjs)
 - [Customization](#customization)
   - [Custom Hotkeys](#custom-hotkeys)
   - [Controlled Mode](#controlled-mode)
@@ -86,12 +87,18 @@ Choose your preferred package manager:
 ```bash
 # npm
 npm install --save-dev @hyperse/inspector @hyperse/inspector-middleware @hyperse/inspector-babel-plugin # or @hyperse/inspector-swc-plugin
+# For Next.js projects, also install:
+npm install --save-dev @hyperse/next-inspector @hyperse/next-config
 
 # yarn
 yarn add --dev @hyperse/inspector @hyperse/inspector-middleware @hyperse/inspector-babel-plugin # or @hyperse/inspector-swc-plugin
+# For Next.js projects, also install:
+yarn add --dev @hyperse/next-inspector @hyperse/next-config
 
 # pnpm
 pnpm add --save-dev @hyperse/inspector @hyperse/inspector-middleware @hyperse/inspector-babel-plugin # or @hyperse/inspector-swc-plugin
+# For Next.js projects, also install:
+pnpm add --save-dev @hyperse/next-inspector @hyperse/next-config
 ```
 
 ## How to Use and Configure
@@ -105,6 +112,9 @@ Setting up `@hyperse/inspector` involves a few steps:
 1.  `@hyperse/inspector`: The core React component.
 2.  `@hyperse/inspector-middleware`: The dev server middleware.
 3.  Either `@hyperse/inspector-babel-plugin` (for Babel users) or `@hyperse/inspector-swc-plugin` (for SWC users).
+4.  For Next.js projects, also install:
+    - `@hyperse/next-inspector`: The Next.js plugin
+    - `@hyperse/next-config`: Next.js configuration utilities
 
 ### Step 2: Add the Inspector Component to Your App
 
@@ -193,6 +203,41 @@ _Note: Ensure the SWC plugin is only applied in development if configuring throu
 ### Step 4: Configure the Dev Server Middleware
 
 The middleware listens for requests from the inspector component and launches your IDE.
+
+#### Next.js
+
+For Next.js projects, you can use the official `@hyperse/next-inspector` plugin. Here's how to configure it:
+
+```javascript
+// next.config.mjs
+import { resolve } from 'path';
+import { createNextConfig } from '@hyperse/next-config';
+import withNextInspector from '@hyperse/next-inspector/plugin';
+
+const plugins = [
+  withNextInspector({
+    projectCwd: resolve(process.cwd()),
+    trustedEditor: 'cursor', // or 'vscode', 'webstorm', etc.
+    customLaunchEditorEndpoint: '/hps_inspector',
+    keys: ['$mod', 'g'], // Customize hotkeys
+    hideDomPathAttr: false,
+  }),
+];
+
+const nextConfig = {
+  // Your Next.js config options
+};
+
+export default createNextConfig(nextConfig, plugins);
+```
+
+Key configuration options for Next.js:
+
+- `projectCwd`: Your project's root directory
+- `trustedEditor`: Your preferred IDE (e.g., 'cursor', 'vscode', 'webstorm')
+- `customLaunchEditorEndpoint`: Custom endpoint for launching the editor
+- `keys`: Custom hotkey configuration
+- `hideDomPathAttr`: Whether to hide DOM path attributes in production
 
 #### Webpack
 
