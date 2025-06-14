@@ -1,4 +1,4 @@
-import type { TagItem } from '@react-dev-inspector/web-components';
+import type { TagItem } from '@hyperse/inspector-component';
 
 /**
  * Get element tags information

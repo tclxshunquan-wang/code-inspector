@@ -8,10 +8,10 @@ export const usePrintPromotion = (
 ) => {
   const isFirstRender = useRef(true);
   useEffect(() => {
-    if (hideConsole || isFirstRender.current) {
-      isFirstRender.current = false;
+    if (hideConsole || !isFirstRender.current) {
       return;
     }
+    isFirstRender.current = false;
     printPromotion(hotKeys, hideContext);
   }, [hideConsole, hideContext]);
 };

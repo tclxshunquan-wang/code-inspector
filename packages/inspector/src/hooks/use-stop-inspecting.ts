@@ -1,4 +1,4 @@
-import type { InspectContextPanel } from '@react-dev-inspector/web-components';
+import type { InspectContextPanel } from '@hyperse/inspector-component';
 import type { DOMElement } from '../agent/dom-inspect-agent.js';
 import type { InspectAgent } from '../types/type-agent.js';
 import type {

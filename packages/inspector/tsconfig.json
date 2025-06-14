@@ -8,7 +8,11 @@
     "noEmit": false,
     "incremental": true,
     "paths": {
-      "@hyperse/inspector-common": ["../inspector-common/src/index.js"]
+      "@hyperse/inspector-common": ["../inspector-common/src/index.js"],
+      "@hyperse/inspector-component": ["../inspector-component/src/index.js"],
+      "@hyperse/inspector-component/overlay": [
+        "../inspector-component/src/overlay/index.js"
+      ]
     },
     "types": ["vitest/globals"]
   },

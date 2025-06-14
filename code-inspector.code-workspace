@@ -13,6 +13,10 @@
       "path": "examples/example-webpack",
     },
     {
+      "name": "example-nextjs",
+      "path": "examples/example-nextjs",
+    },
+    {
       "name": "inspector-common",
       "path": "packages/inspector-common",
     },
@@ -27,6 +31,14 @@
     {
       "name": "inspector-middleware",
       "path": "packages/inspector-middleware",
+    },
+    {
+      "name": "next-inspector",
+      "path": "packages/next-inspector",
+    },
+    {
+      "name": "inspector-component",
+      "path": "packages/inspector-component",
     },
     {
       "name": "inspector",
@@ -88,11 +100,14 @@
       "./website",
       "./examples/example-rspack",
       "./examples/example-webpack",
+      "./examples/example-nextjs",
       "./crates/inspector-swc-plugin",
       "./packages/inspector-common",
       "./packages/inspector-babel-plugin",
       "./packages/inspector-middleware",
-      "./packages/inspector"
+      "./packages/next-inspector",
+      "./packages/inspector",
+      "./packages/inspector-component",
     ],
     "typescript.tsdk": "root/node_modules/typescript/lib"
   },

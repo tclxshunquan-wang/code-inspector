@@ -1,0 +1,107 @@
+{
+  "name": "@hyperse/next-inspector",
+  "version": "1.1.1",
+  "homepage": "https://github.com/hyperse-io/code-inspector",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyperse-io/code-inspector",
+    "directory": "packages/inspector-vite"
+  },
+  "author": {
+    "name": "Hyperse",
+    "url": "https://github.com/hyperse-io"
+  },
+  "type": "module",
+  "license": "SEE LICENSE IN FILE 'LICENSE'",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./plugin": {
+      "types": "./dist/plugin/index.d.ts",
+      "import": "./dist/plugin/index.js",
+      "require": "./dist/plugin/index.js"
+    },
+    "./api": {
+      "types": "./dist/api/index.d.ts",
+      "import": "./dist/api/index.js",
+      "require": "./dist/api/index.js"
+    },
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "import": "./dist/client/index.js",
+      "require": "./dist/client/index.js"
+    },
+    "./config": {
+      "types": "./dist/plugin/plugin-inspector-config.d.ts",
+      "import": "./dist/plugin/plugin-inspector-config.js",
+      "require": "./dist/plugin/plugin-inspector-config.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "bin/",
+    "dist/",
+    "index.js",
+    "README.md",
+    "CHANGELOG.md",
+    "package.json"
+  ],
+  "scripts": {
+    "build:client": "tsup --config ./tsup.config.ts",
+    "build": "rimraf dist && tsc -p ./tsconfig.build.json",
+    "?build-release": "When https://github.com/atlassian/changesets/issues/432 has a solution we can remove this trick",
+    "build-release": "yarn build && rimraf ./_release && yarn pack && mkdir ./_release && tar zxvf ./package.tgz --directory ./_release && rm ./package.tgz",
+    "minify": "node ../../scripts/minify.mjs --dest=dist",
+    "clean": "rimraf --no-glob ./dist ./_release ./coverage ./tsconfig.tsbuildinfo",
+    "lint": "eslint .",
+    "test": "run-s test-unit",
+    "test-task": "vitest run",
+    "test-unit": "vitest run",
+    "test-coverage": "vitest run --coverage",
+    "test-unit-watch": "vitest watch --ui",
+    "typecheck": "tsc --project ./tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@hyperse/eslint-config-hyperse": "^1.4.4",
+    "@types/node": "22.15.29",
+    "@vitest/coverage-istanbul": "3.1.4",
+    "@vitest/ui": "3.1.4",
+    "eslint": "^9.28.0",
+    "next": "^15.3.3",
+    "npm-run-all": "4.1.5",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "rimraf": "6.0.1",
+    "typescript": "5.8.3",
+    "vitest": "3.1.4"
+  },
+  "dependencies": {
+    "@dimjs/utils": "^2.1.2",
+    "@hyperse/config-loader": "^1.0.5",
+    "@hyperse/inspector": "workspace:*",
+    "@hyperse/inspector-common": "workspace:*",
+    "@hyperse/inspector-component": "workspace:*",
+    "@hyperse/inspector-swc-plugin": "workspace:*",
+    "@manypkg/get-packages": "^3.0.0",
+    "launch-editor": "^2.10.0"
+  },
+  "peerDependencies": {
+    "next": ">=15.3.0",
+    "react": ">=18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "_release/package"
+  }
+}

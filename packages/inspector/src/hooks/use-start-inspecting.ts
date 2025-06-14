@@ -3,7 +3,7 @@ import type { TrustedEditor } from '@hyperse/inspector-common';
 import {
   InspectContextPanel,
   type InspectContextPanelShowParams,
-} from '@react-dev-inspector/web-components';
+} from '@hyperse/inspector-component';
 import {
   type DOMElement,
   domInspectAgent,
@@ -171,23 +171,26 @@ export const useStartInspecting = <
     };
 
     contextPanelRef.current = new ContextPanel();
-    contextPanelRef.current.show({
-      initialPosition: {
-        x: event.clientX,
-        y: event.clientY,
-      },
-      sizeLimit: contextPanelSizeLimit,
-      onClickOutside: ondDeactivate,
-      panelParams: {
-        renderLayers,
-        sourceLayers,
-        onHoverItem: onHoverToIndicate,
-        onClickItem: (item) => {
-          onClickToEditor({ item });
+
+    setTimeout(() => {
+      contextPanelRef.current?.show({
+        initialPosition: {
+          x: event.clientX,
+          y: event.clientY,
         },
-        onClickEditor: onClickToEditor,
-      },
-    });
+        sizeLimit: contextPanelSizeLimit,
+        onClickOutside: ondDeactivate,
+        panelParams: {
+          renderLayers,
+          sourceLayers,
+          onHoverItem: onHoverToIndicate,
+          onClickItem: (item) => {
+            onClickToEditor({ item });
+          },
+          onClickEditor: onClickToEditor,
+        },
+      });
+    }, 0);
   });
 
   const startInspecting = useEffectEvent(() => {

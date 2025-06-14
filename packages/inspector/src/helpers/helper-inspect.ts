@@ -1,6 +1,6 @@
 import type { Fiber, Source } from 'react-reconciler';
 import { TRACE_SOURCE } from '@hyperse/inspector-common';
-import type { TagItem } from '@react-dev-inspector/web-components';
+import type { TagItem } from '@hyperse/inspector-component';
 import type { InspectAgent, InspectChainItem } from '../types/type-agent.js';
 import type { CodeInfo } from '../types/type-code.js';
 import {

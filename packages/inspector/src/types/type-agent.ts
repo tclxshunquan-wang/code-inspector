@@ -1,5 +1,5 @@
 import type { Fiber } from 'react-reconciler';
-import type { TagItem } from '@react-dev-inspector/web-components';
+import type { TagItem } from '@hyperse/inspector-component';
 import type { CodeInfo } from './type-code.js';
 
 type MaybePromise<T> = T | Promise<T>;

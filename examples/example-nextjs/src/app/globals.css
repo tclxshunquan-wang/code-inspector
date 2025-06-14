@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+
+/* Note: You may need to change the path to fit your project structure */
+@source '../../../../node_modules/@hyperse/inspector-component/dist/**/*.{js,ts,jsx,tsx}';

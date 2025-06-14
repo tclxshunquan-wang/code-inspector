@@ -1,7 +1,7 @@
 'use client';
 
 import type { Fiber } from 'react-reconciler';
-import { Overlay } from '@react-dev-inspector/web-components';
+import { Overlay } from '@hyperse/inspector-component';
 import {
   getElementFiber,
   getElementFiberUpward,
@@ -102,7 +102,7 @@ export class DOMInspectAgent implements InspectAgent<DOMElement> {
     codeInfo ??= this.findCodeInfo(element);
 
     this.#overlay.inspect({
-      element,
+      element: element as HTMLElement,
       title,
       info: getPathWithLineNumber(codeInfo),
     });
