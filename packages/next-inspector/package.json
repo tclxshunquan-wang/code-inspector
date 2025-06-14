@@ -79,13 +79,13 @@
     "vitest": "3.1.4"
   },
   "dependencies": {
-    "@manypkg/get-packages": "^3.0.0",
     "@dimjs/utils": "^2.1.2",
     "@hyperse/config-loader": "^1.0.5",
     "@hyperse/inspector": "workspace:*",
     "@hyperse/inspector-common": "workspace:*",
     "@hyperse/inspector-component": "workspace:*",
     "@hyperse/inspector-swc-plugin": "workspace:*",
+    "@manypkg/get-packages": "^3.0.0",
     "launch-editor": "^2.10.0"
   },
   "peerDependencies": {

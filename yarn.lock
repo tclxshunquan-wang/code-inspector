@@ -275,18 +275,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@armit/file-utility@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@armit/file-utility@npm:0.3.0"
-  dependencies:
-    adm-zip: "npm:^0.5.16"
-    globby: "npm:^14.1.0"
-    junk: "npm:^4.0.1"
-    micromatch: "npm:^4.0.8"
-  checksum: 10c0/0d2ce54f4f2253b46135fe8925a228da1748596abff79c52ce6b5f84bd9db935ec934610fcf071fd69b16fec4b51291dea4279003bf95a1ebe9d0de85fd5d3c9
-  languageName: node
-  linkType: hard
-
 "@armit/git@npm:^0.2.11":
   version: 0.2.11
   resolution: "@armit/git@npm:0.2.11"
@@ -304,27 +292,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@armit/logger-node@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@armit/logger-node@npm:0.3.0"
-  dependencies:
-    "@armit/logger": "npm:^0.3.0"
-    picocolors: "npm:^1.1.1"
-  checksum: 10c0/d1c60043da5d3e3747b5a7c8b3ac0ff404b1626fee4a46452e5091dd5b82de42090f1fb34b10877c9dc52523eb194d308deadda0b621c38a6fdcbe859e2d9ec1
-  languageName: node
-  linkType: hard
-
 "@armit/logger@npm:^0.2.11":
   version: 0.2.11
   resolution: "@armit/logger@npm:0.2.11"
   checksum: 10c0/8c20cf3a96cfab9091ab5eb065dff4a1d6cb1bad51d1b4cbf551a6e32988bcd139d89e3bc3c3f67a4aa76afd5c567a1b03e56f1fefd766155d53561dffd737cc
-  languageName: node
-  linkType: hard
-
-"@armit/logger@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@armit/logger@npm:0.3.0"
-  checksum: 10c0/cde14c92c2e086d9a8bdb50f7a660fc4b1d764d4e6eced9d466746adde2764a40cf06c48be4130fb0046b0659262596a5efdfcc44b9890f0c91be9fa5328d733
   languageName: node
   linkType: hard
 
@@ -355,36 +326,6 @@ __metadata:
     type-fest: "npm:^4.38.0"
     validate-npm-package-name: "npm:^6.0.0"
   checksum: 10c0/789a384f2e972fbc2ea44ac9ec197e970ee7c83402e17b9e162d7f0af9639615e15615316cb52800c73995ef37c9deebe61c3bc93ccd7c349caaa87f4b8cb273
-  languageName: node
-  linkType: hard
-
-"@armit/package@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@armit/package@npm:0.3.0"
-  dependencies:
-    "@armit/file-utility": "npm:^0.3.0"
-    "@armit/logger-node": "npm:^0.3.0"
-    "@hyperse/install-local": "npm:^1.0.3"
-    as-table: "npm:^1.0.55"
-    boxen: "npm:7.1.1"
-    cosmiconfig: "npm:^9.0.0"
-    execa: "npm:^9.6.0"
-    glob: "npm:^11.0.2"
-    has-yarn: "npm:^3.0.0"
-    import-meta-resolve: "npm:^4.1.0"
-    is-installed-globally: "npm:^1.0.0"
-    is-npm: "npm:^6.0.0"
-    is-yarn-global: "npm:^0.4.1"
-    npm-check-updates: "npm:^18.0.1"
-    ora: "npm:^8.2.0"
-    package-json: "npm:^10.0.1"
-    package-up: "npm:^5.0.0"
-    picocolors: "npm:^1.1.1"
-    pkg-dir: "npm:^8.0.0"
-    semver: "npm:^7.7.2"
-    type-fest: "npm:^4.41.0"
-    validate-npm-package-name: "npm:^6.0.0"
-  checksum: 10c0/054b58a736027cc4c91e02246c150bf2982f29d8c4ccbee32457e32ba4b423e27d1a47786386bee038126b85dfed9a0eeadfa21fbbf6de54d7079f6f9e419d53
   languageName: node
   linkType: hard
 
@@ -6382,7 +6323,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@hyperse/next-inspector@workspace:packages/next-inspector"
   dependencies:
-    "@armit/package": "npm:^0.3.0"
     "@dimjs/utils": "npm:^2.1.2"
     "@hyperse/config-loader": "npm:^1.0.5"
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
@@ -6390,6 +6330,7 @@ __metadata:
     "@hyperse/inspector-common": "workspace:*"
     "@hyperse/inspector-component": "workspace:*"
     "@hyperse/inspector-swc-plugin": "workspace:*"
+    "@manypkg/get-packages": "npm:^3.0.0"
     "@types/node": "npm:22.15.29"
     "@vitest/coverage-istanbul": "npm:3.1.4"
     "@vitest/ui": "npm:3.1.4"
@@ -16642,7 +16583,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^11.0.0, glob@npm:^11.0.1, glob@npm:^11.0.2":
+"glob@npm:^11.0.0, glob@npm:^11.0.1":
   version: 11.0.3
   resolution: "glob@npm:11.0.3"
   dependencies:
@@ -21376,16 +21317,6 @@ __metadata:
     ncu: build/cli.js
     npm-check-updates: build/cli.js
   checksum: 10c0/9142bf3b7ded3b175b4de19893ae3d0829fa0e928b1d7fa1aeb585626c5948e81fc0da3e80f77cbdf122a8fd3870fcaaee18289f541dbde656cc7f1f3211a019
-  languageName: node
-  linkType: hard
-
-"npm-check-updates@npm:^18.0.1":
-  version: 18.0.1
-  resolution: "npm-check-updates@npm:18.0.1"
-  bin:
-    ncu: build/cli.js
-    npm-check-updates: build/cli.js
-  checksum: 10c0/0f4f8c26e8a51a413ee724fe76f0860bd360e0c096a52e928916ef6fe3ff0c2ea0f346ca8d291a43f46a269d05450e2a879fed8aa11871f73970d5f9dfdd162a
   languageName: node
   linkType: hard
 
@@ -27486,7 +27417,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^4.38.0, type-fest@npm:^4.40.0, type-fest@npm:^4.41.0":
+"type-fest@npm:^4.38.0, type-fest@npm:^4.40.0":
   version: 4.41.0
   resolution: "type-fest@npm:4.41.0"
   checksum: 10c0/f5ca697797ed5e88d33ac8f1fec21921839871f808dc59345c9cf67345bfb958ce41bd821165dbf3ae591cedec2bf6fe8882098dfdd8dc54320b859711a2c1e4
