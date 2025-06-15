@@ -60,13 +60,13 @@ That's exactly why **@hyperse/inspector** was created – to make your developme
 
 ## Key Features
 
-✨ **Instant Code Navigation:** Click on a UI element in the browser and jump directly to its source code in your IDE.
-🔌 **IDE Integration:** Launches your configured IDE/Editor pointing to the exact file and line number.
-🛠️ **Multi-framework Support:** Works with popular bundlers and frameworks like Vite, Webpack, Rspack, and more.
-🚀 **Native SWC Plugin:** Includes a high-performance SWC plugin for projects using SWC.
-⚛️ **React 19 Ready:** Compatible with the latest React versions, including React 19.
-⌨️ **Customizable Hotkeys:** Change the activation hotkey to fit your preferences.
-🌍 **Universal:** Designed to work with various project setups.
+- ✨ **Instant Code Navigation:** Click on a UI element in the browser and jump directly to its source code in your IDE.
+- 🔌 **IDE Integration:** Launches your configured IDE/Editor pointing to the exact file and line number.
+- 🛠️ **Multi-framework Support:** Works with popular bundlers and frameworks like Vite, Webpack, Rspack, and more.
+- 🚀 **Native SWC Plugin:** Includes a high-performance SWC plugin for projects using SWC.
+- ⚛️ **React 19 Ready:** Compatible with the latest React versions, including React 19.
+- ⌨️ **Customizable Hotkeys:** Change the activation hotkey to fit your preferences.
+- 🌍 **Universal:** Designed to work with various project setups.
 
 ### Default Hotkeys
 
