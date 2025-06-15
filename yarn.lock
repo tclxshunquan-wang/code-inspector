@@ -2795,22 +2795,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@dimjs/lang@npm:2.1.1":
-  version: 2.1.1
-  resolution: "@dimjs/lang@npm:2.1.1"
-  checksum: 10c0/e548ecbbd63475b5932e210062f3af2c865ebe0a4c713b8398cc7cf1a28f1acf34ad5fb368c0099d87cb541d37cacf76b6aded8eec60d2da313c2d7a08ef12ea
-  languageName: node
-  linkType: hard
-
-"@dimjs/utils@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "@dimjs/utils@npm:2.1.2"
-  dependencies:
-    "@dimjs/lang": "npm:2.1.1"
-  checksum: 10c0/688ffac234bb214e3988f45219b243e33d03ce8be90a4bb0e6fa11dfa91ee0f683ab2bd327eda9788bbe3f2c574c4f8c9fe267b78ce8f824e2a16a6d996daf10
-  languageName: node
-  linkType: hard
-
 "@discoveryjs/json-ext@npm:0.5.7, @discoveryjs/json-ext@npm:^0.5.7":
   version: 0.5.7
   resolution: "@discoveryjs/json-ext@npm:0.5.7"
@@ -4438,16 +4422,6 @@ __metadata:
   dependencies:
     "@floating-ui/utils": "npm:^0.2.9"
   checksum: 10c0/40df1e1dd8a2bad6f70c1ee163f0e151c456f52b9b98a38488d88720b2be72ccd631501a66f8369f96d2e8ad1c4250936b6fd4243e3a99833f2d008ee6afec18
-  languageName: node
-  linkType: hard
-
-"@floating-ui/dom@npm:^1.7.1":
-  version: 1.7.1
-  resolution: "@floating-ui/dom@npm:1.7.1"
-  dependencies:
-    "@floating-ui/core": "npm:^1.7.1"
-    "@floating-ui/utils": "npm:^0.2.9"
-  checksum: 10c0/33b0e892f4c50ce568169cd58793ff5e3bc1e72ee007237d73b9458d4475e1e5f5a4b3f9e6752422d5f5ac902bc0c135ca7dc0a23c6df187fd9d28dc34cdceed
   languageName: node
   linkType: hard
 
@@ -6195,7 +6169,6 @@ __metadata:
   dependencies:
     "@flatjs/cli": "npm:^2.3.1"
     "@floating-ui/core": "npm:^1.7.1"
-    "@floating-ui/dom": "npm:^1.7.1"
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
     "@hyperse/inspector-common": "workspace:*"
     "@types/node": "npm:^22.15.29"
@@ -6323,7 +6296,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@hyperse/next-inspector@workspace:packages/next-inspector"
   dependencies:
-    "@dimjs/utils": "npm:^2.1.2"
     "@hyperse/config-loader": "npm:^1.0.5"
     "@hyperse/eslint-config-hyperse": "npm:^1.4.4"
     "@hyperse/inspector": "workspace:*"

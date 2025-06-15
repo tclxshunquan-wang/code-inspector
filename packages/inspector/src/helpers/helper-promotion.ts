@@ -1,10 +1,13 @@
 import { defaultHotkeys } from '../constant.js';
+import { getPlatformKey } from './helper-platform-key.js';
 
 export const printPromotion = (
   hotKeys?: string[],
   hideContext: boolean = false
 ) => {
-  const keys = (hotKeys || defaultHotkeys()).map((item) => '%c' + item);
+  const keys = (hotKeys || defaultHotkeys()).map((item) =>
+    getPlatformKey(item)
+  );
   const colorCount = keys.length * 2 + 1;
   const colors = Array(colorCount)
     .fill('')
@@ -17,17 +20,13 @@ export const printPromotion = (
     });
   if (hideContext) {
     console.log(
-      `%cPress [ ${keys.join(
-        ' %c+ '
-      )}%c ] to enable code inspector (click page elements to locate source code in editor)`,
+      `%cPress [ ${keys.map((key) => `%c${key}`).join(' %c+ ')}%c ] to enable code inspector`,
       ...colors
     );
     return;
   }
   console.log(
-    `%c[hyperse-inspector]%c Press [ ${keys.join(
-      ' %c+ '
-    )}%c ] to enable code inspector (click page elements to locate source code in editor)`,
+    `%c[hyperse-inspector]%c Press [ ${keys.map((key) => `%c${key}`).join(' %c+ ')}%c ] to enable code inspector`,
     'color: #006aff; font-weight: 900; font-size: 14px;',
     ...colors
   );

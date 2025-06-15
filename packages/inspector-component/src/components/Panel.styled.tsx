@@ -7,11 +7,27 @@ export const InspectPanelRoot = styled.div`
 
 export const PanelRoot = styled.div`
   width: 300px;
-  border-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
   background-color: #333740;
   font-family:
     'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   font-size: 12px;
+  position: relative;
+`;
+
+export const PanelDragHandle = styled.div`
+  position: absolute;
+  top: 0;
+  right: -20px;
+  z-index: 10001001;
+  border-radius: 4px;
+  background-color: #333740;
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
 export const PanelActionLayout = styled.div`

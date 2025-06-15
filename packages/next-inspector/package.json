@@ -79,7 +79,6 @@
     "vitest": "3.1.4"
   },
   "dependencies": {
-    "@dimjs/utils": "^2.1.2",
     "@hyperse/config-loader": "^1.0.5",
     "@hyperse/inspector": "workspace:*",
     "@hyperse/inspector-common": "workspace:*",
