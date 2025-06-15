@@ -1,4 +1,4 @@
-import React, { createRef, type RefObject } from 'react';
+import { createRef, type RefObject } from 'react';
 import { createRoot } from 'react-dom/client';
 import { InspectContextPanelTagName } from '../constant.js';
 import type { ElementItem } from '../types/type-element-item.js';
