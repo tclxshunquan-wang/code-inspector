@@ -432,8 +432,7 @@ flowchart LR
     subgraph Dev Phase
     A[JSX Code] -->|File Save| B[Dev Server]
     B --> C[inspector-babel-plugin or inspector-swc-plugin]
-    C --> D[<Div data-hps-source="project/file.js:10:1:Div"/>]
-    D[start dev server]
+    C --> D[data-hps-source = fileName:lineNumber:columnNumber:domtag]
     end
 
     subgraph Runtime
