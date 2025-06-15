@@ -1,5 +1,14 @@
 # @example/example-rspack
 
+## 1.1.11
+
+### Patch Changes
+
+- Updated dependencies [[`96bb683`](https://github.com/hyperse-io/code-inspector/commit/96bb683c0566fcda4ccfa6a6efe0e1bb6dd040b1), [`928c0a6`](https://github.com/hyperse-io/code-inspector/commit/928c0a6a997729c3fd1de0a8411fc4244eff5ccc)]:
+  - @hyperse/inspector@1.1.7
+  - @hyperse/inspector-babel-plugin@1.1.6
+  - @hyperse/inspector-middleware@1.1.6
+
 ## 1.1.10
 
 ### Patch Changes
