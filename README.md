@@ -75,13 +75,6 @@ That's exactly why **@hyperse/inspector** was created – to make your developme
 
 You can customize the hotkeys by passing the `keys` prop to the `<Inspector/>` component.
 
-### Quick Look
-
-> See `@hyperse/inspector` in action:
-
-<video alt="inspector-preview" src="https://raw.githubusercontent.com/hyperse-io/code-inspector/main/public/quick-look.mp4" loop autoplay muted controls width="100%"></video>
-_Note: If the video doesn't play, you can view it [here](https://raw.githubusercontent.com/hyperse-io/code-inspector/main/public/quick-look.mp4)._
-
 ## Installation
 
 Choose your preferred package manager:
@@ -90,17 +83,17 @@ Choose your preferred package manager:
 # npm
 npm install --save-dev @hyperse/inspector @hyperse/inspector-middleware @hyperse/inspector-babel-plugin # or @hyperse/inspector-swc-plugin
 # For Next.js projects, also install:
-npm install --save-dev @hyperse/next-inspector @hyperse/next-config
+npm install --save-dev @hyperse/next-inspector
 
 # yarn
 yarn add --dev @hyperse/inspector @hyperse/inspector-middleware @hyperse/inspector-babel-plugin # or @hyperse/inspector-swc-plugin
 # For Next.js projects, also install:
-yarn add --dev @hyperse/next-inspector @hyperse/next-config
+yarn add --dev @hyperse/next-inspector
 
 # pnpm
 pnpm add --save-dev @hyperse/inspector @hyperse/inspector-middleware @hyperse/inspector-babel-plugin # or @hyperse/inspector-swc-plugin
 # For Next.js projects, also install:
-pnpm add --save-dev @hyperse/next-inspector @hyperse/next-config
+pnpm add --save-dev @hyperse/next-inspector
 ```
 
 ## How to Use and Configure
@@ -116,7 +109,6 @@ Setting up `@hyperse/inspector` involves a few steps:
 3.  Either `@hyperse/inspector-babel-plugin` (for Babel users) or `@hyperse/inspector-swc-plugin` (for SWC users).
 4.  For Next.js projects, also install:
     - `@hyperse/next-inspector`: The Next.js plugin
-    - `@hyperse/next-config`: Next.js configuration utilities
 
 ### Step 2: Add the Inspector Component to Your App
 
@@ -435,7 +427,25 @@ function MyComponent() {
 
 Here's a simplified overview of the `@hyperse/inspector` pipeline:
 
-![Working Pipeline](https://raw.githubusercontent.com/hyperse-io/code-inspector/main/public/working-pipeline.svg)
+```mermaid
+flowchart LR
+    subgraph Dev Phase
+    A[JSX Code] -->|File Save| B[Dev Server]
+    B --> C[inspector-babel-plugin or inspector-swc-plugin]
+    C --> D[data-hps-source = fileName:lineNumber:columnNumber:domtag]
+    end
+
+    subgraph Runtime
+    D --> E[Browser Page]
+    E --> F[User Event]
+    F --> G{Call Method}
+    G -->|URL Schema| H[Open IDE]
+    G -->|Fetch API| I[Backend]
+    I --> J[Parse Location]
+    J --> H
+    end
+```
+
 <br/>
 
 1.  **Part 0: JSX Source Information (Build-time)**

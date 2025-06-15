@@ -64,7 +64,6 @@
   },
   "dependencies": {
     "@floating-ui/core": "^1.7.1",
-    "@floating-ui/dom": "^1.7.1",
     "@hyperse/inspector-common": "workspace:*",
     "styled-components": "^6.1.19"
   },

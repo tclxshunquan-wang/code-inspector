@@ -5,14 +5,12 @@ import {
   useRef,
   useState,
 } from 'react';
-import {
-  computePosition,
-  flip,
-  offset,
-  type Rect,
-  shift,
-} from '@floating-ui/dom';
+import type { Rect } from '@floating-ui/core';
 import { Panel } from '../components/index.js';
+import {
+  getViewSpaceBox,
+  restraintTipPosition,
+} from '../helpers/helper-rect.js';
 import type { ElementItem } from '../types/type-element-item.js';
 import type { Point } from '../types/type-rect.js';
 import { InspectPanel, type InspectPanelProps } from './InspectPanel.js';
@@ -61,6 +59,11 @@ export const InspectContextPanelRoot = <
   const [display, setDisplay] = useState<'block' | 'none'>('none');
   const [panelData, setPanelData] =
     useState<InspectContextPanelRootProps<Item>>();
+  const [position, setPosition] = useState<{
+    translate: string;
+  }>({
+    translate: '0px 0px',
+  });
 
   // Add drag state
   const isDragging = useRef(false);
@@ -126,35 +129,26 @@ export const InspectContextPanelRoot = <
         return;
       }
       setDisplay('block');
-      const virtualEl = {
-        getBoundingClientRect() {
-          return {
-            width: 0,
-            height: 0,
-            x: params.initialPosition?.x ?? 0,
-            y: params.initialPosition?.y ?? 0,
-            left: params.initialPosition?.x ?? 0,
-            right: params.initialPosition?.x ?? 0,
-            top: params.initialPosition?.y ?? 0,
-            bottom: params.initialPosition?.y ?? 0,
-          };
+      const pointerPadding = 5;
+      restraintTipPosition({
+        elementBox: {
+          x: params.initialPosition?.x ?? 0 - pointerPadding,
+          y: params.initialPosition?.y ?? 0 - pointerPadding,
+          width: pointerPadding,
+          height: pointerPadding,
         },
-      };
-
-      computePosition(virtualEl, floatingRef.current as HTMLElement, {
-        placement: 'right-start',
-        middleware: [offset(5), flip(), shift()],
-      }).then(({ x, y }) => {
+        spaceBox: getViewSpaceBox(),
+        tipSize: floatingRef.current!.getBoundingClientRect().toJSON() as Rect,
+      }).then((position) => {
         Object.assign(floatingRef.current!.style, {
-          top: `${y}px`,
-          left: `${x}px`,
+          top: `${position.top}px`,
+          left: `${position.left}px`,
         });
       });
 
       setPanelData(params.panelParams);
     },
     hide: () => {
-      console.log('hide');
       setDisplay('none');
       setPanelData(undefined);
     },
@@ -176,6 +170,7 @@ export const InspectContextPanelRoot = <
           WebkitUserSelect: 'none',
           MozUserSelect: 'none',
           msUserSelect: 'none',
+          transform: position.translate,
         }}
       >
         {panelData && <InspectPanel {...panelData} />}

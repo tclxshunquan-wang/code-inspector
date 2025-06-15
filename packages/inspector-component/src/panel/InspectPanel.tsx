@@ -40,7 +40,6 @@ export const InspectPanel = <Item extends ElementItem = ElementItem>(
       (acc, layer, index) => {
         const list = layer();
         for (const element of list) {
-          console.log(element.title);
           acc.push({
             index,
             item: element,
@@ -76,6 +75,21 @@ export const InspectPanel = <Item extends ElementItem = ElementItem>(
 
   return (
     <Panel.PanelRoot>
+      <Panel.PanelDragHandle>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill="white"
+            fillRule="evenodd"
+            d="M5.5 4.75a.75.75 0 1 1 1.5 0a.75.75 0 0 1-1.5 0m3.5 0a.75.75 0 1 1 1.5 0a.75.75 0 0 1-1.5 0M5.5 7.995a.75.75 0 1 1 1.5 0a.75.75 0 0 1-1.5 0m3.5 0a.75.75 0 1 1 1.5 0a.75.75 0 0 1-1.5 0M5.5 11.25a.75.75 0 1 1 1.5 0a.75.75 0 0 1-1.5 0m3.5 0a.75.75 0 1 1 1.5 0a.75.75 0 0 1-1.5 0"
+            clipRule="evenodd"
+          />
+        </svg>
+      </Panel.PanelDragHandle>
       <Panel.PanelActionLayout>
         <Panel.PanelActionButton
           active={`${chainMode === ElementChainMode.Render}`}
