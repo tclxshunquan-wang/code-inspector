@@ -35,9 +35,9 @@ const OverlayTip = ({
   const width = Math.round(boundingRect?.width ?? 0);
   const height = Math.round(boundingRect?.height ?? 0);
 
-  const [position, setPosition] = useState<Pick<CSSProperties, 'translate'>>(
-    {}
-  );
+  const [position, setPosition] = useState<Pick<CSSProperties, 'translate'>>({
+    translate: '0px 0px',
+  });
 
   const outerBox = (): Rect => {
     if (!boundingRect || !boxSizing) {
@@ -67,17 +67,23 @@ const OverlayTip = ({
   };
 
   useEffect(() => {
+    let mounted = true;
     if (!containerRef.current) return;
     restraintTipPosition({
       elementBox: outerBox(),
       spaceBox: tipSpaceBox(),
       tipSize: containerRef.current!.getBoundingClientRect().toJSON(),
     }).then((position) => {
-      setPosition({
-        translate: `${position.left}px ${position.top}px`,
-      });
+      if (mounted) {
+        setPosition({
+          translate: `${position.left}px ${position.top}px`,
+        });
+      }
     });
-  }, [containerRef, boundingRect, boxSizing]);
+    return () => {
+      mounted = false;
+    };
+  }, [containerRef, boundingRect, boxSizing, spaceBox]);
 
   return (
     <Overlay.OverlayTipRoot
@@ -86,6 +92,7 @@ const OverlayTip = ({
       style={{
         display: hidden ? 'none' : 'flex',
         translate: position.translate,
+        transform: `translate(${position.translate})`,
       }}
     >
       <Overlay.OverlayInfoRow>
@@ -100,13 +107,9 @@ const OverlayTip = ({
           {width}px × {height}px
         </Overlay.OverlaySize>
       </Overlay.OverlayInfoRow>
-      <Overlay.OverlayCornerHint
-        style={{
-          display: showCornerHint ? 'block' : 'none',
-        }}
-      >
-        {cornerHintText}
-      </Overlay.OverlayCornerHint>
+      {showCornerHint && (
+        <Overlay.OverlayCornerHint>{cornerHintText}</Overlay.OverlayCornerHint>
+      )}
     </Overlay.OverlayTipRoot>
   );
 };

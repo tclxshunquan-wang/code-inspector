@@ -25,7 +25,8 @@ export class Overlay {
     ) as HTMLDivElement;
     doc.documentElement.appendChild(this.overlay);
 
-    createRoot(this.overlay).render(
+    this.root = createRoot(this.overlay);
+    this.root.render(
       <ShadowRoot>
         <InspectorOverlay ref={this.overlayInstance} />
       </ShadowRoot>

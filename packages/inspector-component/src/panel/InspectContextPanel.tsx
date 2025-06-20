@@ -28,7 +28,8 @@ export class InspectContextPanel<Item extends ElementItem = ElementItem> {
     doc.documentElement.appendChild(this.panel);
 
     const InspectContextPanelRootRef = InspectContextPanelRoot<Item>();
-    createRoot(this.panel).render(
+    this.root = createRoot(this.panel);
+    this.root.render(
       <ShadowRoot>
         <InspectContextPanelRootRef ref={this.panelInstance} />
       </ShadowRoot>
